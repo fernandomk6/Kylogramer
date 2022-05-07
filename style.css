@@ -1,5 +1,172 @@
+/* default */
+
 * {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+}
+
+body {
+  padding: 20px 40px;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+.material-symbols-outlined {
+  margin: 0 5px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  transition: .3s;
+  border: none;
+  outline: none;
+  margin: 5px 0 0px 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: #aaa;
+}
+
+.--btn-icon {
+  text-align: center;
+  color: black;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+}
+
+.title {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* header  */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.nav ul {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* search */
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  max-width: 800px;
+}
+
+.search form input{
+  flex: 1 1 auto;
+  height: 28px;
+  margin: 5px 0 0px 5px;
+  padding: 5px;
+  font-size: 1rem;
+  border: 1px solid black;
+}
+
+/* content */
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.content-table {
+  flex: 1 1 auto;
+  max-width: 800px;
+}
+
+.content-tr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  transition: .3s;
+  padding: 5px;
+}
+
+.content-tbody .content-tr:hover {
+  background-color: #eee;
+}
+
+.content-tbody .content-tr {
+  border-bottom: 1px solid #eee;
+}
+
+.content-td,
+.content-th {
+  display: flex;
+  align-items: center;
+  flex: 1 1 500px;
+  padding: 0 5px;
+}
+
+.content-th {
+  font-weight: 700;
+  justify-content: center;
+}
+
+.--content-td-actions {
+  justify-content: center;
+  flex: 1 1 100px;
+}
+
+/* responsive 1000*/
+@media (max-width: 1000px) {
+
+  body {
+    padding: 20px 20px;
+  }
+
+  /* header  */
+  .header {
+    flex-direction: column;
+  }
+
+  .nav ul {
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+  }
+
 }
