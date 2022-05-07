@@ -4,9 +4,9 @@
 <body>
   <?php require("./templates/header.html"); ?>
   <main>
-    <div class="title">
-      <button class="btn">
-        <span>Novo</span>
+    <div class="main-action">
+      <button id="btn-add" class="btn">
+        <span>Adicionar</span>
         <span class="material-symbols-outlined">
           add
         </span>
@@ -93,5 +93,6 @@
       </div>
     </div>
   </main>
+  <script src="./scripts.js"></script>
 </body>
 </html>

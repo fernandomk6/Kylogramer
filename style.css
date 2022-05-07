@@ -18,21 +18,30 @@ input {
   outline: none;
 }
 
+.show {
+  display: flex !important;
+}
+
 a {
   text-decoration: none;
   outline: none;
 }
 
 .material-symbols-outlined {
-  margin: 0 5px;
+  margin: 0 0 0px 5px;
+}
+
+.btn.hamburguer {
+  display: none;
 }
 
 .btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  height: 40px;
+  min-width: 120px;
+  min-height: 40px;
+  padding: 0 5px;
   background-color: black;
   color: white;
   transition: .3s;
@@ -50,11 +59,11 @@ a {
   text-align: center;
   color: black;
   background-color: transparent;
-  width: 30px;
-  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
 }
 
-.title {
+.main-action {
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -68,6 +77,13 @@ a {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .nav ul {
@@ -135,7 +151,7 @@ a {
 .content-th {
   display: flex;
   align-items: center;
-  flex: 1 1 500px;
+  flex: 1 1 300px;
   padding: 0 5px;
 }
 
@@ -146,7 +162,7 @@ a {
 
 .--content-td-actions {
   justify-content: center;
-  flex: 1 1 100px;
+  flex: 1 1 0;
 }
 
 /* responsive 1000*/
@@ -163,10 +179,15 @@ a {
 
   .nav ul {
     flex-wrap: wrap;
+    display: none;
   }
 
   .logo {
     margin-bottom: 20px;
+  }
+
+  .btn.hamburguer {
+    display: flex;
   }
 
 }

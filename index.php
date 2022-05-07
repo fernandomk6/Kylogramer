@@ -6,5 +6,6 @@
   <main>
     <h2>index</h2>
   </main>
+  <script src="./scripts.js"></script>
 </body>
 </html>

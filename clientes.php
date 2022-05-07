@@ -4,9 +4,9 @@
 <body>
   <?php require("./templates/header.html"); ?>
   <main>
-    <div class="title">
-      <h2>Clientes</h2>
-      <button class="btn">
+    <div class="main-action">
+      <button id="btn-add" class="btn">
+        <span>Adicionar</span>
         <span class="material-symbols-outlined">
           add
         </span>
@@ -18,6 +18,7 @@
         <input type="hidden" name="operation" value="search">
         <input type="text" name="nome" placeholder="Nome do cliente">
         <button type="submit" class="btn">
+          <span>Pesquisar</span>
           <span class="material-symbols-outlined">
             search
           </span>
@@ -104,5 +105,6 @@
       </div>
     </div>
   </main>
+  <script src="./scripts.js"></script>
 </body>
 </html>
