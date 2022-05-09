@@ -33,10 +33,6 @@ body {
   background-color: transparent;
 }
 
-.--show {
-  display: flex;
-}
-
 /* header  */
 .header {
   display: flex;
@@ -49,14 +45,17 @@ body {
   color: black;
 }
 
+.logo.logo--alt a {
+  color: white;
+}
+
 .nav {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.--nav-show {
-  padding: 20px 20px;
+.nav.--nav-show {
   height: 100vh;
 }
 
@@ -181,6 +180,10 @@ body {
     padding: 20px 20px;
   }
 
+  .btn.btn--icon.btn--icon--alt {
+    color: white;
+  }
+
   /* header  */
   .header {
     flex-direction: column;
@@ -191,15 +194,29 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    background-color: red;
     transition: .3s;
     overflow: hidden;
     height: 0;
+    background-color: black;
+  }
+
+  .nav-actions {
+    display: flex;
+    padding: 20px 40px;
   }
 
   .nav ul {
     flex-direction: column;
     justify-content: flex-start;
+    align-items: stretch;
+    padding: 0 40px;
+    width: 100%;
+  }
+
+  .nav ul li {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #333;
   }
 
   .btn.btn--hamburguer {
