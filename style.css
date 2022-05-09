@@ -34,11 +34,7 @@ body {
 }
 
 .--show {
-  display: flex !important;
-}
-
-.--hide {
-  display: none !important;
+  display: flex;
 }
 
 /* header  */
@@ -59,26 +55,16 @@ body {
   align-items: center;
 }
 
+.--nav-show {
+  padding: 20px 20px;
+  height: 100vh;
+}
+
 .nav-actions {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-}
-
-.nav.nav--mobile {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  padding: 20px 20px;
-  background-color: red;
-}
-
-.nav.nav--mobile ul {
-  flex-direction: column;
-  justify-content: flex-start;
 }
 
 .nav ul {
@@ -201,7 +187,19 @@ body {
   }
 
   .nav {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: red;
+    transition: .3s;
+    overflow: hidden;
+    height: 0;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   .btn.btn--hamburguer {
