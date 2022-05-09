@@ -115,6 +115,5 @@
     </div>
   </main>
   <script src="./scripts.js"></script>
-  <script src="./clientes.js"></script>
 </body>
 </html>
