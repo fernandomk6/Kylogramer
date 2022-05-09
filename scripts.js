@@ -14,6 +14,6 @@ function showNav() {
 
 }
 
-window.onload = function() {
+window.addEventListener("load", function() {
   showNav();
-};
+});

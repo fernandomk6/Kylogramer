@@ -4,7 +4,7 @@
 <body>
   <?php require("./templates/header.html"); ?>
   <main>
-    <div class="actions">
+    <div id="actions" class="actions">
       <div class="actions-container">
         <button id="btn-show-nav" class="btn btn--icon btn--hamburguer">
           <span class="material-symbols-outlined">
@@ -18,7 +18,7 @@
         </button>
       </div>
     </div>
-    <div class="search">
+    <div id="searc" class="search">
       <div class="search-container">
         <form>
           <input type="hidden" name="table" value="cliente">
@@ -32,7 +32,7 @@
         </form>
       </div>
     </div>
-    <div class="content">
+    <div id="content" class="content">
       <div class="content-container">
         <div class="content-table">
           <div class="content-thead">
@@ -113,7 +113,11 @@
         </div>
       </div>
     </div>
+    <div id="modal-add">
+      <h2>Modal de cadastro</h2>
+    </div>
   </main>
   <script src="./scripts.js"></script>
+  <script src="./clientes.js"></script>
 </body>
 </html>

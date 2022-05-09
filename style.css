@@ -83,7 +83,7 @@ body {
   flex: 1 1 auto;
   max-width: 800px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -221,6 +221,11 @@ body {
 
   .btn.btn--hamburguer {
     display: flex;
+  }
+
+  /* actions */
+  .actions-container {
+    justify-content: space-between;
   }
 
 }
