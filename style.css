@@ -4,6 +4,14 @@ body {
   position: relative;
 }
 
+.row-between {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* btns default */
 .btn {
   font-size: 1rem;
   display: flex;
@@ -15,12 +23,18 @@ body {
   color: white;
   transition: .3s;
   border: none;
-  outline: none;
   cursor: pointer;
 }
 
+.btn.btn--master {
+  background-color: cyan;
+  color: white;
+  font-weight: bold;
+}
+
 .btn.btn--hamburguer {
-  display: none;
+  display: flex;
+  visibility: hidden;
 }
 
 .btn:hover,
@@ -33,85 +47,44 @@ body {
   background-color: transparent;
 }
 
-/* header  */
-.header {
+/* forms default */
+.form-row {
   display: flex;
   justify-content: space-between;
+}
+
+.form-row .input-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-items: center;
+}
+
+.form-row .submit-container {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
 }
 
-.logo a{
-  color: black;
-}
-
-.logo.logo--alt a {
-  color: white;
-}
-
-.nav {
+.form-column {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-.nav.--nav-show {
-  height: 100vh;
-}
-
-.nav-actions {
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.nav ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* actions */
-.actions {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.actions-container {
+.form-column .input-container {
   flex: 1 1 auto;
-  max-width: 800px;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  flex-direction: column;
 }
 
-/* search */
-.search {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.search-container {
+.form-column .submit-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1 1 auto;
-  max-width: 800px;
-  
 }
 
-.search form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1 1 auto;
-  flex-wrap: wrap;
-}
-
-.search form input{
+/* inputs default*/
+.input-default {
   flex: 1 1 auto;
   height: 40px;
   margin: 5px;
@@ -120,56 +93,88 @@ body {
   border: 1px solid black;
 }
 
-/* content */
-.content {
+/* sections structure*/
+.section {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.content-container {
+.section-container {
   flex: 1 1 auto;
-  max-width: 800px;
+  max-width: 700px;
 }
 
-.content-table {
-  flex: 1 1 auto;
+/* logo */
+.logo a{
+  color: black;
 }
 
-.content-tr {
+.logo.logo--alt a {
+  color: white;
+}
+
+/* nav */
+.nav.--nav-show {
+  height: 100vh;
+}
+
+#nav-header {
+  display: none;
+  padding: 20px 40px;
+}
+
+.nav ul {
   display: flex;
-  align-items: center;
-  min-height: 40px;
+  justify-content: center;
+}
+
+/* table */
+.table {
+  flex: 1 1 auto;
+}
+
+.tr {
+  display: flex;
   transition: .3s;
   padding: 5px;
 }
 
-.content-td,
-.content-th {
+.td, .th {
   display: flex;
   align-items: center;
   flex: 1 1 100px;
   padding: 5px;
 }
 
-.content-th {
+.th {
   font-weight: 700;
 }
 
-.content-tbody .content-tr:hover {
+.tbody .tr:hover {
   background-color: #eee;
 }
 
-.content-tbody .content-tr {
+.tbody .tr {
   border-bottom: 1px solid #eee;
 }
 
-.content-td.content-td--actions {
+.td.td--actions {
   flex: 0 0 auto;
 }
 
-.content-th.content-th--actions {
+.th.th--actions {
   flex: 0 0 auto;
+}
+
+/* add */
+.add {
+  background-color: red;
+}
+
+.add-actions {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* responsive 1000*/
@@ -190,6 +195,8 @@ body {
   }
 
   .nav {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 0;
     left: 0;
@@ -200,9 +207,8 @@ body {
     background-color: black;
   }
 
-  .nav-actions {
+  #nav-header {
     display: flex;
-    padding: 20px 40px;
   }
 
   .nav ul {
@@ -220,7 +226,7 @@ body {
   }
 
   .btn.btn--hamburguer {
-    display: flex;
+    visibility: visible;
   }
 
   /* actions */
