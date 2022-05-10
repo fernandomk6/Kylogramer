@@ -123,9 +123,9 @@
         <form id="modal-add-form" class="form-column">
           <div class="input-container">
             <span>Nome</span>
-            <input class="input-default" type="text" name="nome" placeholder="Nome do seu cliente">
+            <input id="add-nome" class="input-default" type="text" name="nome" placeholder="Nome do seu cliente">
             <span>Telefone</span>
-            <input class="input-default" type="number" name="telefone" placeholder="Contato de seu cliente">
+            <input id="add-telefone" class="input-default" type="number" name="telefone" placeholder="Contato de seu cliente">
           </div>
           <div class="submit-container">
             <button id="btn-close-modal-add" type="button" class="btn btn--error">
@@ -141,6 +141,16 @@
           </div>
         </form>
       </section>
+    </section>
+    <section id="modal-message" class="modal-message">
+      <div class="row-between">
+        <p></p>
+        <button id="btn-close-modal-message" class="btn btn--icon">
+          <span class="material-symbols-outlined">
+            done
+          </span>
+        </button>
+      </div>
     </section>
   </main>
   <script src="./scripts.js"></script>

@@ -11,6 +11,10 @@ body {
   align-items: center;
 }
 
+.display-none {
+  display: none;
+}
+
 .color-main {
   color: #000;
 }
@@ -22,7 +26,6 @@ body {
 .description {
   margin: 5px;
   margin-bottom: 20px;
-  color: #444;
 }
 
 /* btns default */
@@ -55,7 +58,7 @@ body {
 .btn.btn--error {
   flex: 1 1 auto;
   padding: 10px;
-  background-color: #ff0333;
+  background-color: #e45771;
   color: white;
 }
 
@@ -93,9 +96,7 @@ body {
 }
 
 .form-column .input-container span {
-  color: #444;
   font-weight: bold;
-  font-size: .8rem;
   margin: 5px;
 }
 
@@ -131,16 +132,6 @@ body {
 .section-container {
   flex: 1 1 auto;
   max-width: 700px;
-}
-
-/* nav */
-.nav.--nav-show {
-  height: 100vh;
-}
-
-#nav-header {
-  display: none;
-  padding: 20px 40px;
 }
 
 .nav ul {
@@ -195,6 +186,24 @@ body {
   display: flex;
 }
 
+/* message-box */
+.modal-message {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #e45771;
+  color: #4d0714;
+  margin: 0;
+  padding: 10px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.modal-message span {
+  margin-left: 20px;
+}
+
 /* responsive 1000*/
 @media (max-width: 1000px) {
 
@@ -225,8 +234,9 @@ body {
     background-color: black;
   }
 
-  #nav-header {
+  #nav-header.display-none {
     display: flex;
+    padding: 20px 40px;
   }
 
   .nav ul {

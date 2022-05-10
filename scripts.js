@@ -5,11 +5,11 @@ function nav() {
   let btnCloseNav = document.querySelector("#btn-close-nav");
 
   btnShowNav.addEventListener("click", function() {
-    nav.classList.add("--nav-show");
+    nav.style.height = "100vh";
   });
 
   btnCloseNav.addEventListener("click", function() {
-    nav.classList.remove("--nav-show");
+    nav.style.height = "0";
   });
 
 }
