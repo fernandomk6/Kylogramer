@@ -11,6 +11,14 @@ body {
   align-items: center;
 }
 
+.color-main {
+  color: #000;
+}
+
+.color-alt {
+  color: #fff;
+}
+
 /* btns default */
 .btn {
   font-size: 1rem;
@@ -105,15 +113,6 @@ body {
   max-width: 700px;
 }
 
-/* logo */
-.logo a{
-  color: black;
-}
-
-.logo.logo--alt a {
-  color: white;
-}
-
 /* nav */
 .nav.--nav-show {
   height: 100vh;
@@ -197,7 +196,7 @@ body {
   .nav {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
