@@ -1,4 +1,4 @@
-function showNav() {
+function nav() {
   
   let btnShowNav = document.querySelector("#btn-show-nav");
   let nav = document.querySelector("#nav");
@@ -15,5 +15,5 @@ function showNav() {
 }
 
 window.addEventListener("load", function() {
-  showNav();
+  nav();
 });

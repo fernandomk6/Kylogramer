@@ -12,7 +12,7 @@
               menu
             </span>
           </button>
-          <button id="btn-add" class="btn btn--icon">
+          <button id="btn-show-modal-add" class="btn btn--icon">
             <span class="material-symbols-outlined">
               add
             </span>
@@ -117,30 +117,23 @@
         </div>
       </div>
     </section>
-    <section id="add" class="section add">
+    <section id="modal-add" class="section">
       <section class="section-container">
-        <div class="add-actions">
-          <h2>Kylogramer</h2>
-          <button id="btn-close-add" class="btn btn--icon btn--icon--alt">
-            <span class="material-symbols-outlined">
-              close
-            </span>
-          </button>
-        </div>
-        <p class="light-text">Cadastre aqui seus clientes</p>
-        <form class="add-form">
+        <p class="description">Cadastre seu cliente</p>
+        <form id="modal-add-form" class="form-column">
           <div class="input-container">
-            <label>
-              <span>Nome</span>
-              <input type="text" name="nome" placeholder="Nome do seu cliente">
-            </label>
-            <label>
-              <span>Telefone</span>
-              <input type="number" name="telefone" placeholder="Contato de seu cliente">
-            </label>
+            <span>Nome</span>
+            <input class="input-default" type="text" name="nome" placeholder="Nome do seu cliente">
+            <span>Telefone</span>
+            <input class="input-default" type="number" name="telefone" placeholder="Contato de seu cliente">
           </div>
           <div class="submit-container">
-            <button type="submit">
+            <button id="btn-close-modal-add" type="button" class="btn btn--error">
+              <span class="material-symbols-outlined">
+                cancel
+              </span>
+            </button>
+            <button type="submit" class="btn btn--master">
               <span class="material-symbols-outlined">
                 done
               </span>

@@ -19,6 +19,12 @@ body {
   color: #fff;
 }
 
+.description {
+  margin: 5px;
+  margin-bottom: 20px;
+  color: #444;
+}
+
 /* btns default */
 .btn {
   font-size: 1rem;
@@ -34,25 +40,32 @@ body {
   cursor: pointer;
 }
 
+.btn.btn--icon {
+  color: black;
+  background-color: transparent;
+}
+
 .btn.btn--master {
+  flex: 1 1 auto;
+  padding: 10px;
   background-color: cyan;
   color: white;
-  font-weight: bold;
+}
+
+.btn.btn--error {
+  flex: 1 1 auto;
+  padding: 10px;
+  background-color: #ff0333;
+  color: white;
 }
 
 .btn.btn--hamburguer {
-  display: flex;
   visibility: hidden;
 }
 
 .btn:hover,
 .btn.btn--icon:hover {
   color: #AAA;
-}
-
-.btn.btn--icon {
-  color: black;
-  background-color: transparent;
 }
 
 /* forms default */
@@ -79,15 +92,22 @@ body {
   flex-direction: column;
 }
 
+.form-column .input-container span {
+  color: #444;
+  font-weight: bold;
+  font-size: .8rem;
+  margin: 5px;
+}
+
 .form-column .input-container {
-  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
 }
 
 .form-column .submit-container {
+  margin-top: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -166,14 +186,13 @@ body {
   flex: 0 0 auto;
 }
 
-/* add */
-.add {
-  background-color: red;
+/* modals */
+#modal-add {
+  display: none;
 }
 
-.add-actions {
+#modal-add.showModalAdd {
   display: flex;
-  justify-content: space-between;
 }
 
 /* responsive 1000*/
@@ -221,7 +240,7 @@ body {
   .nav ul li {
     padding-bottom: 10px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #444;
   }
 
   .btn.btn--hamburguer {
