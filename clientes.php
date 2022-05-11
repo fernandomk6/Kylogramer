@@ -53,7 +53,22 @@
             </div>
           </div>
           <div id="tbody" class="tbody">
-            
+            <div class="tr">
+              <div class="td">fernando</div>
+              <div class="td">85985680757</div>
+              <div class="td td--actions">
+                <button class="btn btn--icon">
+                  <span class="material-symbols-outlined">
+                    delete
+                  </span>
+                </button>
+                <button class="btn btn--icon">
+                  <span class="material-symbols-outlined">
+                    edit
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

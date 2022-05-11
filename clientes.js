@@ -76,7 +76,6 @@ function modalAdd() {
     formData = new FormData(this);
 
     sendResquest("./API/cliente.php", "post", formData).then(function(data) {
-      // fechar modal de cadastro
 
       inputAddNome.value = "";
       inputAddTelefone.value = "";
@@ -87,7 +86,6 @@ function modalAdd() {
         section.style.display = "flex";
       });
 
-      // incluir dados na tabela
       tbody.innerHTML = "";
       data.map(function(cliente) {
 
@@ -108,7 +106,6 @@ function modalAdd() {
   
         tbody.appendChild(tr);
         
-
       });
 
       console.log(data);
