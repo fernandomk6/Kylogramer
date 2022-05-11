@@ -1,3 +1,14 @@
+async function sendResquest(url, method, body) {
+
+  let response = await fetch(url, {
+    method: method,
+    body: body
+  });
+
+  response = await response.json();
+  return response;
+}
+
 function modalAdd() {
   let btnShowModalAdd = document.querySelector("#btn-show-modal-add");
   let btnCloseModalAdd = document.querySelector("#btn-close-modal-add");
@@ -7,6 +18,19 @@ function modalAdd() {
   let modalMessageText = document.querySelector("#modal-message p");
   let inputAddNome = document.querySelector("#add-nome");
   let inputAddTelefone = document.querySelector("#add-telefone");
+  let tbody = document.querySelector("#tbody");
+  const tdActions = `<div class="td td--actions">
+                    <button class="btn btn--icon">
+                      <span class="material-symbols-outlined">
+                        delete
+                      </span>
+                    </button>
+                    <button class="btn btn--icon">
+                      <span class="material-symbols-outlined">
+                        edit
+                      </span>
+                    </button>
+                  </div>`;
 
   let sectionsToClose = [
     document.querySelector("#search"),
@@ -38,23 +62,57 @@ function modalAdd() {
   modalAddForm.addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const cliente = {
-      nome: inputAddNome.value,
-      telefone: inputAddTelefone.value
-    }
-
-    if(!cliente.nome) {
+    if(!inputAddNome.value) {
       modalMessageText.innerHTML += "Nome em branco <br>";
     }
-    if(!cliente.telefone) {
+    if(!inputAddTelefone.value) {
       modalMessageText.innerHTML += "Telefone em branco <br>";
     }
-    if(modalMessageText.innerHTML === "") {
-      alert("tudo ok");
+    if(!(modalMessageText.innerHTML === "")) {
+      modalMessage.style.display = "block";
       return;
     }
-    
-    modalMessage.style.display = "block";
+
+    formData = new FormData(this);
+
+    sendResquest("./API/cliente.php", "post", formData).then(function(data) {
+      // fechar modal de cadastro
+
+      inputAddNome.value = "";
+      inputAddTelefone.value = "";
+
+      modalAdd.classList.remove("showModalAdd");
+
+      sectionsToClose.map(function(section) {
+        section.style.display = "flex";
+      });
+
+      // incluir dados na tabela
+      tbody.innerHTML = "";
+      data.map(function(cliente) {
+
+        let tdNome = document.createElement("div");
+        tdNome.classList.add("td");
+        let tdTelefone = document.createElement("div");
+        tdTelefone.classList.add("td");
+
+        tdNome.innerHTML = cliente.nome;
+        tdTelefone.innerHTML = cliente.telefone;
+
+        let tr = document.createElement("div");
+        tr.classList.add("tr");
+
+        tr.appendChild(tdNome);
+        tr.appendChild(tdTelefone);
+        tr.innerHTML += tdActions;
+  
+        tbody.appendChild(tr);
+        
+
+      });
+
+      console.log(data);
+    });
 
   });
 }

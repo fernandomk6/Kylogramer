@@ -52,76 +52,19 @@
               </div>
             </div>
           </div>
-          <div class="tbody">
-            <div class="tr">
-              <div class="td">
-                <span>Fernando</span>
-              </div>
-              <div class="td">
-                <span>85985680757</span>
-              </div>
-              <div class="td td--actions">
-                <button class="btn btn--icon">
-                  <span class="material-symbols-outlined">
-                    delete
-                  </span>
-                </button>
-                <button class="btn btn--icon">
-                  <span class="material-symbols-outlined">
-                    edit
-                  </span>
-                </button>
-              </div>
-            </div>
-            <div class="tr">
-              <div class="td">
-                <span>Fernando Henrique Pontes</span>
-              </div>
-              <div class="td">
-                <span>85985680757</span>
-              </div>
-              <div class="td td--actions">
-                <button class="btn btn--icon">
-                  <span class="material-symbols-outlined">
-                    delete
-                  </span>
-                </button>
-                <button class="btn btn--icon">
-                  <span class="material-symbols-outlined">
-                    edit
-                  </span>
-                </button>
-              </div>
-            </div>
-            <div class="tr">
-              <div class="td">
-                <span>Fernando Henrique</span>
-              </div>
-              <div class="td">
-                <span>85985680757</span>
-              </div>
-              <div class="td td--actions">
-                <button class="btn btn--icon">
-                  <span class="material-symbols-outlined">
-                    delete
-                  </span>
-                </button>
-                <button class="btn btn--icon">
-                  <span class="material-symbols-outlined">
-                    edit
-                  </span>
-                </button>
-              </div>
-            </div>
+          <div id="tbody" class="tbody">
+            
           </div>
         </div>
       </div>
     </section>
     <section id="modal-add" class="section">
       <section class="section-container">
-        <p class="description">Cadastre seu cliente</p>
+        <h2 class="title">Cadastro de Cliente</h2>
+        <p class="description">Preencha todos os campos para uma melhor experiencia</p>
         <form id="modal-add-form" class="form-column">
           <div class="input-container">
+            <input type="hidden" name="operation" value="insert-cliente">
             <span>Nome</span>
             <input id="add-nome" class="input-default" type="text" name="nome" placeholder="Nome do seu cliente">
             <span>Telefone</span>
@@ -147,7 +90,7 @@
         <p></p>
         <button id="btn-close-modal-message" class="btn btn--icon">
           <span class="material-symbols-outlined">
-            done
+            close
           </span>
         </button>
       </div>
