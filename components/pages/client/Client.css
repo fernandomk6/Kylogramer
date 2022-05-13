@@ -1,0 +1,24 @@
+.client {
+  background-color: blue;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  min-height: 300px;
+}
+
+.client__button {
+  border: none;
+  padding: 10px 20px;
+}
+
+.client__button--cyan {
+  background-color: cyan;
+  color: white;
+}
+
+.client__button--green {
+  background-color: green;
+  color: white;
+}
