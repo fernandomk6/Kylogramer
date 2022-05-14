@@ -1,26 +1,26 @@
-class Client {
+// class Client {
 
-  constructor() {
-    this.myButton("myButton");
-    this.myButton2("myButton2");
-  };
+//   constructor() {
+//     this.element1("element1");
+//     this.element2("element2");
+//   };
 
-  myButton(id) {
-    let el = document.getElementById(id);
+//   element1(id) {
+//     let el = document.getElementById(id);
 
-    el.onclick = function() {
-      alert("clicou no botão 1");
-    }
-  };
+//     el.onclick = function() {
+//       alert("click element 1");
+//     }
+//   };
 
-  myButton2(id) {
-    let el = document.getElementById(id);
+//   element2(id) {
+//     let el = document.getElementById(id);
 
-    el.onclick = function() {
-      alert("clicou no botão 2");
-    }
-  };
+//     el.onclick = function() {
+//       alert("click element 2");
+//     }
+//   };
 
-}
+// }
 
-export default Client;
+// export default Client;
