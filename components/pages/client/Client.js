@@ -1,9 +1,26 @@
-class MyButton {
+class Client {
 
-  constructor(element) {
-    this.component = element;
-  }
+  constructor() {
+    this.myButton("myButton");
+    this.myButton2("myButton2");
+  };
+
+  myButton(id) {
+    let el = document.getElementById(id);
+
+    el.onclick = function() {
+      alert("clicou no botão 1");
+    }
+  };
+
+  myButton2(id) {
+    let el = document.getElementById(id);
+
+    el.onclick = function() {
+      alert("clicou no botão 2");
+    }
+  };
 
 }
 
-export default MyButton;
+export default Client;

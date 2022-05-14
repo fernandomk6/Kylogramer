@@ -1,5 +1,5 @@
-import MyButton from "./components/pages/client/Client.js";
+import Client from "./components/pages/client/Client.js";
 
-let myButton = new MyButton(document.querySelector("#my-button"));
+const client = new Client();
 
-console.log(myButton);
+console.log(client);
