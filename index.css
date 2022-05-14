@@ -6,16 +6,13 @@
   --cl-white-0: #fff;
   --cl-white-1: #eee;
   --cl-white-2: #ccc;
-
   --cl-black-0: #666;
   --cl-black-1: #333;
   --cl-black-3: #000;
-  
   --cl-green-0: lightGreen;
   --cl-green-1: green;
-  
-  --cl-red-0: pink; 
-  --cl-red-1: darkred;
+  --cl-red-0: darkred;
+  --cl-yellow-0: yellow;
 }
 
 * {
