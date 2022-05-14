@@ -1,7 +1,7 @@
 # Notas
 *Sessão onde será feita diversas anotações sobre o projeto*
 
-## Modelo de component JS
+## Modelo de component Javascript
 ```javascript
 class Client {
 
