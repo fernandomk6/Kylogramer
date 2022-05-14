@@ -1,11 +1,47 @@
-@import url("./components/pages/client/Client.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+@import url("./components/header/Header.css");
+
+:root {
+  --cl-white-0: #fff;
+  --cl-white-1: #eee;
+  --cl-white-2: #ccc;
+
+  --cl-black-0: #666;
+  --cl-black-1: #333;
+  --cl-black-3: #000;
+  
+  --cl-green-0: lightGreen;
+  --cl-green-1: green;
+  
+  --cl-red-0: pink; 
+  --cl-red-1: darkred;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
 }
 
-h1 {
-  color: red;
+.App {
+  background-color: var(--cl-white-1);
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: auto;
+}
+
+@media screen and (max-width: 800px) {
+  * {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  * {
+    font-size: 8px;
+  }
 }
