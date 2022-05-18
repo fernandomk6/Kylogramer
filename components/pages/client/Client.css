@@ -1,0 +1,162 @@
+.client {
+  padding: 20px 80px 0px 80px;
+}
+
+.client__page-title {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.client__page-title__add {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--cl-green-0);
+}
+
+.client__search {
+  padding-bottom: 20px;
+}
+
+.client__search__form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.client__search__form__input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 1 auto;
+  margin-right: 20px;
+  margin-bottom: 5px;
+}
+
+.client__search__form__input-box--little {
+  max-width: 100px;
+}
+
+.client__search__form__input-box--medium {
+  max-width: 300px;
+}
+
+.client__search__form__input-box__title {
+  color: var(--cl-black-0);
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+.client__search__form__input-box__input {
+  align-self: stretch;
+  border: 1px solid var(--cl-white-2);
+  outline: none;
+  padding: 5px;
+  color: var(--cl-black-1);
+  transition: .3s;
+}
+
+.client__search__form__input-box__input:focus {
+  border: 1px solid var(--cl-green-0);
+}
+
+.client__search__form__input-box__input:hover {
+  border: 1px solid var(--cl-green-0);
+}
+
+.client__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.client__content__card {
+  margin-bottom: 20px;
+  background-color: var(--cl-white-0);
+  border: 1px solid var(--cl-white-2);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.client__content__card__name-box {
+  flex: 1 1 auto;
+  margin-right: 10px;
+}
+
+.client__content__card__name-box__title {
+  color: var(--cl-black-0);
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+.client__content__card__name-box__content {
+  color: var(--cl-black-1);
+}
+
+.client__content__card__phone-box {
+  flex: 1 1 auto;
+  margin-right: 10px;
+}
+
+.client__content__card__phone-box__title {
+  color: var(--cl-black-0);
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+.client__content__card__phone-box__content {
+  color: var(--cl-black-1);
+}
+
+.client__content__card__actions-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.client__content__card__actions-box__action {
+  background-color: transparent;
+  border: none;
+  color: var(--cl-green-0);
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 800px) {
+  .client {
+    padding: 20px 40px 80px 40px;
+  }
+
+  .client__page-title {
+    padding: 10px 0;
+  }
+
+  .client__search {
+    padding-bottom: 10px;
+  }
+
+  .client__content__card {
+    margin-bottom: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .client__content__card__name-box,
+  .client__content__card__phone-box {
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  .client__content__card__actions-box {
+    justify-content: flex-end;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .client {
+    padding: 10px 20px 80px 20px;
+  }
+}

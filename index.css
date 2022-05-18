@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 @import url("./components/header/Header.css");
+@import url("./components/pages/client/Client.css");
+@import url("./components/pages/payment/Payment.css");
+@import url("./components/pages/product/Product.css");
+@import url("./components/pages/sale/Sale.css");
 
 :root {
   --cl-white-0: #fff;
@@ -9,8 +13,7 @@
   --cl-black-0: #666;
   --cl-black-1: #333;
   --cl-black-3: #000;
-  --cl-green-0: lightGreen;
-  --cl-green-1: green;
+  --cl-green-0: green;
   --cl-red-0: darkred;
   --cl-yellow-0: yellow;
 }
@@ -29,6 +32,10 @@
   height: 100vh;
   position: relative;
   overflow: auto;
+}
+
+.--hide {
+  display: none !important;
 }
 
 @media screen and (max-width: 800px) {

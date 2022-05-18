@@ -12,6 +12,9 @@
   <div class="App">
     <?php require_once("./components/header/Header.html") ?>
     <?php require_once("./components/pages/client/Client.html") ?>
+    <?php require_once("./components/pages/payment/Payment.html") ?>
+    <?php require_once("./components/pages/product/Product.html") ?>
+    <?php require_once("./components/pages/sale/Sale.html") ?>
   </div>
   <script type="module" src="./index.js"></script>
 </body>
