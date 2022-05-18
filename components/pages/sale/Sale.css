@@ -1,3 +1,214 @@
 .sale {
-  background-color: red;
+  padding: 20px 80px 0px 80px;
+}
+
+.sale__page-title {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sale__page-title__add {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--cl-green-0);
+}
+
+.sale__search {
+  padding-bottom: 20px;
+}
+
+.sale__search__form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sale__search__form__input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 1 auto;
+  margin-right: 20px;
+  margin-bottom: 5px;
+}
+
+.sale__search__form__input-box--little {
+  max-width: 100px;
+}
+
+.sale__search__form__input-box--medium {
+  max-width: 300px;
+}
+
+.sale__search__form__input-box__title {
+  color: var(--cl-black-0);
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+.sale__search__form__input-box__input {
+  align-self: stretch;
+  border: 1px solid var(--cl-white-2);
+  outline: none;
+  padding: 5px;
+  color: var(--cl-black-1);
+  transition: .3s;
+}
+
+
+.sale__search__form__input-box__input:focus,
+.sale__search__form__input-box__input:hover {
+  border: 1px solid var(--cl-green-0);
+}
+
+.sale__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.sale__content__card {
+  margin-bottom: 20px;
+  background-color: var(--cl-white-0);
+  border: 1px solid var(--cl-white-2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sale__content__card__sale-box {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sale__content__card__sale-box__id-box,
+.sale__content__card__sale-box__date-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.sale__content__card__sale-box__date-box__title,
+.sale__content__card__sale-box__id-box__title {
+  color: var(--cl-black-0);
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+.sale__content__card__sale-box__date-box__content,
+.sale__content__card__sale-box__id-box__content {
+  color: var(--cl-black-1);
+}
+
+.sale__content__card__client-box {
+  margin-bottom: 20px;
+  padding: 10px 0 10px 20px;
+  border-left: 1px solid var(--cl-green-0);
+  display: flex;
+  justify-content: space-between;
+}
+
+.sale__content__card__client-box__name-box,
+.sale__content__card__client-box__phone-box {
+  color: var(--cl-black-1);
+}
+
+.sale__content__card__product-box {
+  margin-bottom: 20px;
+  padding: 10px 0 10px 20px;
+  border-left: 1px solid var(--cl-green-0);
+  display: flex;
+  flex-direction: column;
+}
+
+.sale__content__card__product-box__product {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--cl-black-1);
+}
+
+.sale__content__card__payment-box {
+  margin-bottom: 20px;
+  padding: 10px 0 10px 20px;
+  border-left: 1px solid var(--cl-green-0);
+  display: flex;
+  flex-direction: column;
+}
+
+.sale__content__card__payment-box__payment {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: var(--cl-black-1);
+}
+
+.sale__content__card__total-box {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.sale__content__card__total-box__content {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--cl-black-1);
+}
+
+.sale__content__card__actions-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 20px;
+  margin: 10px 0;
+  border-top: 1px solid var(--cl-white-2);
+}
+
+.sale__content__card__actions-box__action {
+  background-color: transparent;
+  border: none;
+  color: var(--cl-green-0);
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .sale {
+    padding: 20px 40px 80px 40px;
+  }
+
+  .sale__page-title {
+    padding: 10px 0;
+  }
+
+  .sale__search {
+    padding-bottom: 10px;
+  }
+
+  .sale__content__card {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sale__content__card__id-box,
+  .sale__content__card__name-box,
+  .sale__content__card__price-box {
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  .sale__content__card__actions-box {
+    justify-content: flex-end;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sale {
+    padding: 10px 20px 80px 20px;
+  }
 }

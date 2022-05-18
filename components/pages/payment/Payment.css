@@ -34,6 +34,10 @@
   margin-bottom: 5px;
 }
 
+.payment__search__form__input-box--little {
+  max-width: 100px;
+}
+
 .payment__search__form__input-box__title {
   color: var(--cl-black-0);
   font-weight: bold;
@@ -66,14 +70,27 @@
   margin-bottom: 20px;
   background-color: var(--cl-white-0);
   border: 1px solid var(--cl-white-2);
-  padding: 10px;
+  padding: 20px;
   display: flex;
-  align-items: center;
+}
+
+.payment__content__card__id-box {
+  margin-right: 40px;
+}
+
+.payment__content__card__id-box__title {
+  color: var(--cl-black-0);
+  font-weight: bold;
+  font-size: .8rem;
+}
+
+.payment__content__card__id-box__content {
+  color: var(--cl-black-1);
 }
 
 .payment__content__card__name-box {
   flex: 1 1 auto;
-  margin-right: 10px;
+  margin-right: 40px;
 }
 
 .payment__content__card__name-box__title {
@@ -97,7 +114,7 @@
   border: none;
   color: var(--cl-green-0);
   cursor: pointer;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 @media screen and (max-width: 800px) {
@@ -115,12 +132,12 @@
 
   .payment__content__card {
     margin-bottom: 10px;
-    padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
   }
 
+  .payment__content__card__id-box,
   .payment__content__card__name-box {
     margin: 0;
     margin-bottom: 5px;
