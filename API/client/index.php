@@ -9,7 +9,7 @@ if(isset($_POST) && !empty($_POST)) {
   $stmt->bindParam(":phone", $_POST['client-phone']);
   $stmt->execute();
 
-  $stmt = $con->prepare("SELECT * FROM cliente");
+  $stmt = $con->prepare("SELECT * FROM cliente ORDER BY id DESC");
   $result = $stmt->execute();
 
   echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
