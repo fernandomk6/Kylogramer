@@ -18,6 +18,18 @@
   --cl-yellow-0: yellow;
 }
 
+::-webkit-scrollbar{
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cl-white-1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cl-green-0);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -26,12 +38,17 @@
   font-size: 20px;
 }
 
+html, body {
+  overflow: hidden;
+}
+
 .App {
   background-color: var(--cl-white-1);
   width: 100vw;
   height: 100vh;
   position: relative;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .--hide {

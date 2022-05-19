@@ -5,9 +5,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 80px;
-  position: sticky;
-  top: 0;
-  width: 100vw;
 }
 
 .header__logo__text {
