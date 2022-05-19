@@ -135,6 +135,89 @@
   margin-right: 10px;
 }
 
+.client__insert {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cl-white-0);
+  border: 1px solid var(--cl-white-2);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.client__insert__title-box {
+  display: flex;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.client__insert__title-box__title {
+  font-size: 1.2rem;
+  color: var(--cl-black-2);
+}
+
+.client__insert__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.client__insert__form__input-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px;
+  margin-bottom: 20px;
+}
+
+.client__insert__form__input-box__title {
+  font-weight: bold;
+  font-size: .8rem;
+  color: var(--cl-black-0);
+}
+
+.client__insert__form__input-box__input {
+  border: 1px solid var(--cl-white-2);
+  outline: none;
+  padding: 5px;
+  color: var(--cl-black-1);
+  transition: .3s;
+}
+
+.client__insert__form__input-box__input:focus {
+  border: 1px solid var(--cl-green-0);
+}
+
+.client__insert__form__input-box__input:hover {
+  border: 1px solid var(--cl-green-0);
+}
+
+.client__insert__form__submit-box {
+  margin-top: 20px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid var(--cl-white-2);
+}
+
+.client__insert__form__submit-box__submit,
+.client__insert__form__submit-box__cancel {
+  color: var(--cl-green-0);
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.client__insert__form__error-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 40px;
+}
+
+.client__insert__form__error-box__error {
+  color: var(--cl-red-0);
+  font-size: .8rem;
+}
+
 @media screen and (max-width: 800px) {
   .client {
     padding: 20px 40px 80px 40px;
