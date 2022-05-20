@@ -204,6 +204,7 @@
   background-color: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .client__insert__form__error-box {

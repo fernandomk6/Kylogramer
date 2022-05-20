@@ -3,8 +3,8 @@ class Client {
   constructor() {
     this.ClientPageTitleAddBtn("client__page-title__add__btn");
     this.ClientInsertFormSubmitBoxCancel("client__insert__form__submit-box__cancel");
-    this.ClientInsertForm("client__insert__form");
-    this.ClientGetAll();
+    this.ClientInsertForm("client__insert__form", this.clientContentCardActionsBoxAction);
+    this.ClientGetAll(this.clientContentCardActionsBoxAction);
   };
 
   ClientPageTitleAddBtn(id) {
@@ -60,7 +60,7 @@ class Client {
 
   }
 
-  ClientInsertForm(id) {
+  ClientInsertForm(id, clientContentCardActionsBoxAction) {
     let el = document.getElementById(id);
 
     let clientInsertFormErrorBox = el.querySelector("#client__insert__form__error-box");
@@ -115,7 +115,6 @@ class Client {
           return response.json();
         })
         .then(function(data) {
-          console.log(data);
 
           clientContent.innerHTML = "";
           for (const client of data) {
@@ -135,8 +134,8 @@ class Client {
                   <p class="client__content__card__phone-box__content">${client.telefone}</p>
                 </div>
                 <div class="client__content__card__actions-box">
-                  <button class="client__content__card__actions-box__action">Editar</button>
-                  <button class="client__content__card__actions-box__action">Excluir</button>
+                  <button data-method="PUT" data-id="${client.id}" class="client__content__card__actions-box__action">Editar</button>
+                  <button data-method="DELETE" data-id="${client.id}" class="client__content__card__actions-box__action">Excluir</button>
                 </div>
               </div>
             `;
@@ -144,6 +143,8 @@ class Client {
             clientContent.innerHTML = clientContent.innerHTML + newClientCard;
 
           } 
+
+          clientContentCardActionsBoxAction();
 
         })
         .catch(function(error) {
@@ -162,7 +163,7 @@ class Client {
 
   }
 
-  ClientGetAll() {
+  ClientGetAll(clientContentCardActionsBoxAction) {
     let clientContent = document.getElementById("client__content");
 
     fetch("./API/client/index.php")
@@ -172,6 +173,7 @@ class Client {
       .then(function(data) {
 
         clientContent.innerHTML = "";
+
         for (const client of data) {
 
           let newClientCard =  `
@@ -189,8 +191,8 @@ class Client {
                 <p class="client__content__card__phone-box__content">${client.telefone}</p>
               </div>
               <div class="client__content__card__actions-box">
-                <button class="client__content__card__actions-box__action">Editar</button>
-                <button class="client__content__card__actions-box__action">Excluir</button>
+                <button data-id="${client.id}" data-method="PUT" class="client__content__card__actions-box__action">Editar</button>
+                <button data-id="${client.id}" data-method="DELETE" class="client__content__card__actions-box__action">Excluir</button>
               </div>
             </div>
           `;
@@ -199,11 +201,31 @@ class Client {
 
         } 
 
+        // edit delete events
+        clientContentCardActionsBoxAction();
+
       })
       .catch(function(error) {
         console.log(error);
       });
     
+  }
+
+  clientContentCardActionsBoxAction() {
+    let actions = document.getElementsByClassName("client__content__card__actions-box__action");
+
+    for (const action of actions) {
+      if (action.dataset.method == "DELETE") {
+        action.onclick = function() {
+          alert("Deletar" + action.dataset.id);
+        }
+      }
+      if (action.dataset.method == "PUT") {
+        action.onclick = function() {
+          alert("Editar"  + action.dataset.id);
+        }
+      }
+    }
   }
 
 }
