@@ -4,6 +4,7 @@ class Client {
     this.ClientPageTitleAddBtn("client__page-title__add__btn");
     this.ClientInsertFormSubmitBoxCancel("client__insert__form__submit-box__cancel");
     this.ClientInsertForm("client__insert__form");
+    this.ClientGetAll();
   };
 
   ClientPageTitleAddBtn(id) {
@@ -159,6 +160,50 @@ class Client {
         }
     }
 
+  }
+
+  ClientGetAll() {
+    let clientContent = document.getElementById("client__content");
+
+    fetch("./API/client/index.php")
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+
+        clientContent.innerHTML = "";
+        for (const client of data) {
+
+          let newClientCard =  `
+            <div class="client__content__card">
+              <div class="client__content__card__id-box">
+                <span class="client__content__card__id-box__title">Id</span>
+                <p class="client__content__card__id-box__content">${client.id}</p>
+              </div>
+              <div class="client__content__card__name-box">
+                <span class="client__content__card__name-box__title">Nome</span>
+                <p class="client__content__card__name-box__content">${client.nome}</p>
+              </div>
+              <div class="client__content__card__phone-box">
+                <span class="client__content__card__phone-box__title">Telefone</span>
+                <p class="client__content__card__phone-box__content">${client.telefone}</p>
+              </div>
+              <div class="client__content__card__actions-box">
+                <button class="client__content__card__actions-box__action">Editar</button>
+                <button class="client__content__card__actions-box__action">Excluir</button>
+              </div>
+            </div>
+          `;
+
+          clientContent.innerHTML = clientContent.innerHTML + newClientCard;
+
+        } 
+
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    
   }
 
 }
