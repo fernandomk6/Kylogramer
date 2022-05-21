@@ -49,7 +49,6 @@
   border: 1px solid var(--cl-white-2);
   outline: none;
   padding: 5px;
-  color: var(--cl-black-1);
   transition: .3s;
 }
 
@@ -84,10 +83,6 @@
   font-size: .8rem;
 }
 
-.payment__content__card__id-box__content {
-  color: var(--cl-black-1);
-}
-
 .payment__content__card__name-box {
   flex: 1 1 auto;
   margin-right: 40px;
@@ -97,10 +92,6 @@
   color: var(--cl-black-0);
   font-weight: bold;
   font-size: .8rem;
-}
-
-.payment__content__card__name-box__content {
-  color: var(--cl-black-1);
 }
 
 .payment__content__card__actions-box {

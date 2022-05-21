@@ -35,7 +35,7 @@
   font-size: 2rem;
 }
 
-.header__nav__item:hover {
+.header .header__nav__item__icon:hover {
   color: var(--cl-green-0);
 }
 

@@ -1,9 +1,9 @@
 <section id="client" class="client --hide">
-  <section id="client__page-title" class="client__page-title">
+  <section class="client__page-title">
     <h2>Clientes</h2>
-    <button id="client__page-title__add__btn" class="client__page-title__add">Novo Cliente</button>
+    <button class="client__page-title__add">Novo Cliente</button>
   </section>
-  <section id="client__search" class="client__search">
+  <section class="client__search">
     <form class="client__search__form">
       <label class="client__search__form__input-box client__search__form__input-box--little">
         <span class="client__search__form__input-box__title">Id</span>
@@ -19,44 +19,48 @@
       </label>
     </form>
   </section>
-  <section id="client__content" class="client__content">
+  <section class="client__content">
+    <div class="client__content__card">
+      <div class="client__content__card__id-box">
+        <span class="client__content__card__id-box__title">Id</span>
+        <p class="client__content__card__id-box__content">${client.id}</p>
+      </div>
+      <div class="client__content__card__name-box">
+        <span class="client__content__card__name-box__title">Nome</span>
+        <p class="client__content__card__name-box__content">${client.nome}</p>
+      </div>
+      <div class="client__content__card__phone-box">
+        <span class="client__content__card__phone-box__title">Telefone</span>
+        <p class="client__content__card__phone-box__content">${client.telefone}</p>
+      </div>
+      <div class="client__content__card__actions-box">
+        <button class="client__content__card__actions-box__action">Editar</button>
+        <button class="client__content__card__actions-box__action">Excluir</button>
+      </div>
+    </div>
   </section>
-  <section id="client__insert" class="client__insert --hide">
+  <section class="client__insert --hide">
     <div class="client__insert__title-box">
       <h2 class="client__insert__title-box__title">Cadastre o seu Cliente</h2>
     </div>
-    <form id="client__insert__form" class="client__insert__form">
+    <form class="client__insert__form">
       <div class="client__insert__form__input-box">
         <span class="client__insert__form__input-box__title">Nome</span>
-        <input 
-          class="client__insert__form__input-box__input" 
-          type="text" 
-          name="client-name" 
-          id="client-name"
-        >
+        <input class="client__insert__form__input-box__input" type="text" name="client-name">
       </div>
       <div class="client__insert__form__input-box">
         <span class="client__insert__form__input-box__title">Telefone</span>
-        <input 
-          class="client__insert__form__input-box__input" 
-          type="number"
-          name="client-phone"
-          id="client-phone"
-        >
+        <input class="client__insert__form__input-box__input" type="number" name="client-phone">
       </div>
-      <div id="client__insert__form__error-box" class="client__insert__form__error-box">
+      <div class="client__insert__form__error-box">
+        <span class="client__insert__form__error-box__error">Email inválido</span>
+        <span class="client__insert__form__error-box__error">Telefone inválido</span>
       </div>
       <div class="client__insert__form__submit-box">
-        <button 
-          id="client__insert__form__submit-box__cancel"
-          type="button" 
-          class="client__insert__form__submit-box__cancel"
-        >
+        <button type="button" class="client__insert__form__submit-box__cancel">
           Cancelar
         </button>
-        <button  
-          class="client__insert__form__submit-box__submit"
-        >
+        <button class="client__insert__form__submit-box__submit">
           Salvar
         </button>
       </div>
