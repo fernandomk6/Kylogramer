@@ -17,8 +17,7 @@ class Header {
   hideAllPages() {
     for (const page in this.pages) {
       if (Object.hasOwnProperty.call(this.pages, page)) {
-        const element = this.pages[page];
-        element.classList.add("--hide");
+        this.pages[page].classList.add("--hide");
       }
     }
   }
