@@ -7,7 +7,14 @@
   padding: 20px 80px;
 }
 
-.header__logo__text {
+.header__logo-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__logo-box__text {
   font-size: 2rem;
   font-weight: 700;
 }
