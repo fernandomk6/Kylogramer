@@ -47,7 +47,7 @@ class Client {
         this.clearFormData();
 
         (async () => {
-          const res = await fetch('./server/client.php', {
+          await fetch('./server/client.php', {
             method: "POST",
             header: {
               ContentType: "application/json"
@@ -55,8 +55,7 @@ class Client {
             body: formData
           });
 
-          const data = await res.json();
-          console.log(data);
+          this.loadCards();
 
         })();
         
@@ -123,9 +122,9 @@ class Client {
 
   };
 
-  selectAll() {
-
-  };
+  loadCards() {
+    console.log("Load all card");
+  }
 
   selectById() {
 

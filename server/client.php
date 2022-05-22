@@ -12,11 +12,6 @@ if (isset($_POST) && !empty($_POST)) {
     $stmt->bindParam(':name', $_POST['name']);
     $stmt->bindParam(':phone', $_POST['phone']);
     $stmt->execute();
-
-    $sql = "SELECT * FROM client WHERE deleted = 0 ORDER BY id DESC";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     exit();
   }
 }
