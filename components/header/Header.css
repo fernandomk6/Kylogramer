@@ -31,11 +31,11 @@
   transition: .3s;
 }
 
-.header .header__nav__item__icon {
+.material-symbols-outlined.header__nav__item__icon {
   font-size: 2rem;
 }
 
-.header .header__nav__item__icon:hover {
+.material-symbols-outlined.header__nav__item__icon:hover {
   color: var(--cl-green-0);
 }
 

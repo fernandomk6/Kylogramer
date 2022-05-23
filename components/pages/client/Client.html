@@ -24,19 +24,30 @@
     <div class="client__content__card">
       <div class="client__content__card__id-box">
         <span class="client__content__card__id-box__title">Id</span>
-        <p class="client__content__card__id-box__content">0</p>
+        <p class="client__content__card__id-box__content">${id}</p>
       </div>
       <div class="client__content__card__name-box">
         <span class="client__content__card__name-box__title">Nome</span>
-        <p class="client__content__card__name-box__content">Fernando Henrique Pontes Pereira</p>
+        <p class="client__content__card__name-box__content">${name}</p>
       </div>
       <div class="client__content__card__phone-box">
         <span class="client__content__card__phone-box__title">Telefone</span>
-        <p class="client__content__card__phone-box__content">85 985680757</p>
+        <p class="client__content__card__phone-box__content">${phone}</p>
       </div>
       <div class="client__content__card__actions-box">
-        <button class="client__content__card__actions-box__action">Editar</button>
-        <button class="client__content__card__actions-box__action">Excluir</button>
+
+        <form data-id="client__content__card__actions-box__update-form">
+          <input type="hidden" name="type" value="update">
+          <input type="hidden" name="id" value="${id}">
+          <button class="client__content__card__actions-box__action" type="submit">Editar</button>
+        </form>
+        
+        <form data-id="client__content__card__actions-box__delete-form">
+          <input type="hidden" name="type" value="delete">
+          <input type="hidden" name="id" value="${id}">
+          <button class="client__content__card__actions-box__action" type="submit">Excluir</button>
+        </form>
+        
       </div>
     </div>
   </section>
@@ -45,6 +56,7 @@
       <h2 class="client__insert__title-box__title">Cadastre o seu Cliente</h2>
     </div>
     <form id="client__insert__form__form" class="client__insert__form">
+      <input type="hidden" name="id" value="0" id="client__insert__form__input-box__input__id">
       <div class="client__insert__form__input-box">
         <span class="client__insert__form__input-box__title">Nome</span>
         <input class="client__insert__form__input-box__input" type="text" name="name" id="client__insert__form__input-box__input__name">
@@ -64,5 +76,18 @@
         </button>
       </div>
     </form>
+  </section>
+  <section id="client__dialog-message__section" class="client__dialog-message --hide">
+    <div class="client__dialog-message__title">
+      <span class="material-symbols-outlined client__dialog-message__title__icon">
+        warning
+      </span>
+    </div>
+    <div id="client__dialog-message__content__text-box" class="client__dialog-message__content">
+    </div>
+    <div class="client__dialog-message__action-box">
+      <button id="client__dialog-message__action-box__action__no" class="client__dialog-message__action-box__action">Não</button>
+      <button id="client__dialog-message__action-box__action__yes"class="client__dialog-message__action-box__action">Sim</button>
+    </div>
   </section>
 </section>

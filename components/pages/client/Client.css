@@ -205,6 +205,47 @@
   font-size: .8rem;
 }
 
+.client__dialog-message {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cl-white-0);
+  border: 1px solid var(--cl-white-2);
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.client__dialog-message__title {
+  background-color: var(--cl-yellow-0);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.material-symbols-outlined.client__dialog-message__title__icon{
+  font-size: 2rem;
+  color: var(--cl-black-1);
+}
+
+.client__dialog-message__content {
+  padding: 20px 10px;
+  border-bottom: 1px solid var(--cl-white-2);
+}
+
+.client__dialog-message__action-box {
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.client__dialog-message__action-box__action {
+  background-color: transparent;
+  border: none;
+  color: var(--cl-green-0);
+  cursor: pointer;
+}
+
 @media screen and (max-width: 800px) {
   .client {
     padding: 20px 40px 80px 40px;
