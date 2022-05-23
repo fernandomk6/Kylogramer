@@ -1,2 +1,2 @@
 # To do
-- Concluir metodos class Client.js
+- Concluir metodo search client.js
