@@ -1,43 +1,53 @@
 class Client {
 
   constructor() {
+    this.loadCards();
     this.form();
   };
 
   sections = {
-    pageTitle: document.getElementById("client__page-title__section"),
-    search: document.getElementById("client__search__section"),
-    content: document.getElementById("client__content__section"),
-    insert: document.getElementById("client__insert__section")
+    pageTitle: document.querySelector("#client__page-title__section"),
+    search: document.querySelector("#client__search__section"),
+    content: document.querySelector("#client__content__section"),
+    insert: document.querySelector("#client__insert__section")
   };
+
+  buildCard(id, name, phone) {
+    let card = `<div class="client__content__card">
+                  <div class="client__content__card__id-box">
+                    <span class="client__content__card__id-box__title">Id</span>
+                    <p class="client__content__card__id-box__content">${id}</p>
+                  </div>
+                  <div class="client__content__card__name-box">
+                    <span class="client__content__card__name-box__title">Nome</span>
+                    <p class="client__content__card__name-box__content">${name}</p>
+                  </div>
+                  <div class="client__content__card__phone-box">
+                    <span class="client__content__card__phone-box__title">Telefone</span>
+                    <p class="client__content__card__phone-box__content">${phone}</p>
+                  </div>
+                  <div class="client__content__card__actions-box">
+                    <button class="client__content__card__actions-box__action">Editar</button>
+                    <button class="client__content__card__actions-box__action">Excluir</button>
+                  </div>
+                </div>`;
+    return card;
+  }
 
   form() {
-    this.openForm();
-    this.cancelForm();
-    this.submitForm();
-  };
-
-  openForm() {
-    let openBtn = document.getElementById("client__page-title__add__btn");
-  
-    openBtn.onclick = () => {
-      this.hideAllSections();
-      this.sections.insert.classList.remove("--hide");
+    let form = document.querySelector("#client__insert__form__form");
+    let btnOpenForm = document.querySelector("#client__page-title__add__btn");
+    let btnCancelForm = document.querySelector("#client__insert__form__submit-box__cancel__btn");
+    
+    btnOpenForm.onclick = () => {
+      this.showForm();
     };
 
-  };
-
-  cancelForm() {
-    let cancelBtn = document.getElementById("client__insert__form__submit-box__cancel__btn");
-    cancelBtn.onclick = () => {
+    btnCancelForm.onclick = () => {
       this.clearFormData();
-      this.showAllSections();
-      this.sections.insert.classList.add("--hide");
+      this.hideForm();
     };
-  };
 
-  submitForm() {
-    let form = document.getElementById("client__insert__form__form");
     form.onsubmit = (e) => {
       e.preventDefault();
 
@@ -61,34 +71,53 @@ class Client {
         
       }
     }
+  }
+
+  showForm() {
+    this.sections.pageTitle.classList.add("--hide");
+    this.sections.search.classList.add("--hide");
+    this.sections.content.classList.add("--hide");
+
+    this.sections.insert.classList.remove("--hide");
+  };
+
+  hideForm() {
+    this.sections.pageTitle.classList.remove("--hide");
+    this.sections.search.classList.remove("--hide");
+    this.sections.content.classList.remove("--hide");
+    
+    this.sections.insert.classList.add("--hide");
   };
 
   clearFormData() {
-    document.getElementById("client__insert__form__input-box__input__name").value = "";
-    document.getElementById("client__insert__form__input-box__input__phone").value = "";
-    document.getElementById("client__insert__form__error-box__section").innerHTML = "";
+    document.querySelector("#client__insert__form__input-box__input__name").value = "";
+    document.querySelector("#client__insert__form__input-box__input__phone").value = "";
+    document.querySelector("#client__insert__form__error-box__section").innerHTML = "";
   };
 
   validation() {
-    let name = document.getElementById("client__insert__form__input-box__input__name").value;
-    let phone = document.getElementById("client__insert__form__input-box__input__phone").value;
-    let errorsSection = document.getElementById("client__insert__form__error-box__section");
-    let errors = [];
+    let name = document.querySelector("#client__insert__form__input-box__input__name").value;
+    let phone = document.querySelector("#client__insert__form__input-box__input__phone").value;
+    let errorsSection = document.querySelector("#client__insert__form__error-box__section");
+
     errorsSection.innerHTML = "";
+    let errors = [];
 
     if (!name) {
-      errors.push("Nome inválido");
+      errors.push("Nome em branco");
     }
 
     if (!phone) {
-      errors.push("Phone inválido");
+      errors.push("Telefone em branco");
     }
 
     if (errors.length !== 0) {
       for (const error of errors) {
+
         let span = document.createElement("span");
         span.classList.add("client__insert__form__error-box__error");
         span.innerHTML = error;
+
         errorsSection.appendChild(span);
       }
       return;
@@ -98,35 +127,34 @@ class Client {
 
   };
 
-  hideAllSections() {
-    for (const section in this.sections) {
-      if (Object.hasOwnProperty.call(this.sections, section)) {
-        this.sections[section].classList.add("--hide");
-      }
-    }
-  };
+  loadCards() {
+    (async () => {
 
-  showAllSections() {
-    for (const section in this.sections) {
-      if (Object.hasOwnProperty.call(this.sections, section)) {
-        this.sections[section].classList.remove("--hide");
+      const res = await fetch("./server/client.php?type=selectAll", {
+        method: "GET",
+        headers: {
+          contentType: "application/json"
+        }
+      });
+      const data = await res.json();
+
+      this.sections.content.innerHTML = "";
+
+      for (const client of data) {
+        let card = this.buildCard(client.id, client.name, client.phone);
+        this.sections.content.innerHTML += card;
       }
-    }
-  };
+  
+      this.hideForm();
+
+    })();
+  }
 
   delete() {
 
   };
 
   update() {
-
-  };
-
-  loadCards() {
-    console.log("Load all card");
-  }
-
-  selectById() {
 
   };
 
