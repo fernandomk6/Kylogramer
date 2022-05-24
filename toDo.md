@@ -1,2 +1,3 @@
 # To do
-- Concluir metodo search client.js
+- Validar valores monetario em Product.js
+- Corrigir search por preço

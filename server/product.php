@@ -1,5 +1,4 @@
 <?php
-
 require_once("./conn.php");
 
 if (isset($_POST) && !empty($_POST)) {
@@ -7,19 +6,19 @@ if (isset($_POST) && !empty($_POST)) {
 
     if ($_POST['id'] == "0") {
 
-      $sql = "INSERT INTO `client`(`name`, `phone`) VALUES (:name, :phone)";
+      $sql = "INSERT INTO `product`(`name`, `price`) VALUES (:name, :price)";
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':name', $_POST['name']);
-      $stmt->bindParam(':phone', $_POST['phone']);
+      $stmt->bindParam(':price', $_POST['price']);
       $stmt->execute();
       exit();
 
     } else {
 
-      $sql = "UPDATE `client` SET `name` = :name, `phone` = :phone WHERE id = :id";
+      $sql = "UPDATE `product` SET `name` = :name, `price` = :price WHERE id = :id";
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':name', $_POST['name']);
-      $stmt->bindParam(':phone', $_POST['phone']);
+      $stmt->bindParam(':price', $_POST['price']);
       $stmt->bindParam(':id', $_POST['id']);
       $stmt->execute();
       exit();
@@ -29,7 +28,7 @@ if (isset($_POST) && !empty($_POST)) {
 
   if ($_POST['type'] == "delete") {
 
-    $sql = "UPDATE `client` SET `deleted` = 1 WHERE id = :id";
+    $sql = "UPDATE `product` SET `deleted` = 1 WHERE id = :id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':id', $_POST['id']);
     $stmt->execute();
@@ -42,7 +41,7 @@ if (isset($_GET) && !empty($_GET)) {
 
   if ($_GET['type'] == "selectAll") {
 
-    $sql = "SELECT * FROM client WHERE deleted = 0 ORDER BY id DESC";
+    $sql = "SELECT * FROM product WHERE deleted = 0 ORDER BY id DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
@@ -52,7 +51,7 @@ if (isset($_GET) && !empty($_GET)) {
 
   if ($_GET['type'] == "selectById") {
 
-    $sql = "SELECT * FROM client WHERE deleted = 0 AND id = :id";
+    $sql = "SELECT * FROM product WHERE deleted = 0 AND id = :id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
@@ -64,21 +63,21 @@ if (isset($_GET) && !empty($_GET)) {
   if ($_GET['type'] == "search") {
     
     $name = "%".$_GET['name']."%";
-    $phone = "%".$_GET['phone']."%";
+    $price = "%".$_GET['price']."%";
 
     if (!empty($_GET['id'])) {
 
       $sql = "SELECT *
-              FROM `client`
+              FROM `product`
               WHERE deleted = 0
               AND name LIKE :name
-              AND phone LIKE :phone
+              AND price LIKE :price
               AND id = :id";
 
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':id', $_GET['id']);
       $stmt->bindParam(':name', $name);
-      $stmt->bindParam(':phone', $phone);
+      $stmt->bindParam(':price', $price);
       $stmt->execute();
       echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
       exit();
@@ -86,14 +85,14 @@ if (isset($_GET) && !empty($_GET)) {
     } else {
 
       $sql = "SELECT *
-              FROM `client`
+              FROM `product`
               WHERE deleted = 0
               AND name LIKE :name
-              AND phone LIKE :phone";
+              AND price LIKE :price";
 
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':name', $name);
-      $stmt->bindParam(':phone', $phone);
+      $stmt->bindParam(':price', $price);
       $stmt->execute();
       echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
       exit();
