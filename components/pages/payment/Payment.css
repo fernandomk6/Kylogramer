@@ -108,6 +108,130 @@
   margin-right: 10px;
 }
 
+.payment__insert {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cl-white-0);
+  border: 1px solid var(--cl-white-2);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.payment__insert__title-box {
+  display: flex;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.payment__insert__title-box__title {
+  font-size: 1.2rem;
+  color: var(--cl-black-2);
+}
+
+.payment__insert__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment__insert__form__input-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px;
+  margin-bottom: 20px;
+}
+
+.payment__insert__form__input-box__title {
+  font-weight: bold;
+  font-size: .8rem;
+  color: var(--cl-black-0);
+}
+
+.payment__insert__form__input-box__input {
+  border: 1px solid var(--cl-white-2);
+  outline: none;
+  padding: 5px;
+  transition: .3s;
+}
+
+.payment__insert__form__input-box__input:focus {
+  border: 1px solid var(--cl-green-0);
+}
+
+.payment__insert__form__input-box__input:hover {
+  border: 1px solid var(--cl-green-0);
+}
+
+.payment__insert__form__submit-box {
+  margin-top: 20px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid var(--cl-white-2);
+}
+
+.payment__insert__form__submit-box__submit,
+.payment__insert__form__submit-box__cancel {
+  color: var(--cl-green-0);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.payment__insert__form__error-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 40px;
+}
+
+.payment__insert__form__error-box__error {
+  color: var(--cl-red-0);
+  font-size: .8rem;
+}
+
+.payment__dialog-message {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cl-white-0);
+  border: 1px solid var(--cl-white-2);
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.payment__dialog-message__title {
+  background-color: var(--cl-yellow-0);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.material-symbols-outlined.payment__dialog-message__title__icon{
+  font-size: 2rem;
+  color: var(--cl-black-1);
+}
+
+.payment__dialog-message__content {
+  padding: 20px 10px;
+  border-bottom: 1px solid var(--cl-white-2);
+}
+
+.payment__dialog-message__action-box {
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.payment__dialog-message__action-box__action {
+  background-color: transparent;
+  border: none;
+  color: var(--cl-green-0);
+  cursor: pointer;
+}
+
 @media screen and (max-width: 800px) {
   .payment {
     padding: 20px 40px 80px 40px;

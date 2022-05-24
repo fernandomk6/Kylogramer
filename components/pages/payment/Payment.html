@@ -1,77 +1,78 @@
 <section id="payment" class="payment --hide">
-  <section class="payment__page-title">
+  <section id="payment__page-title__section" class="payment__page-title">
     <h2>Formas de pagamento</h2>
-    <button class="payment__page-title__add">Nova Forma de pagamento</button>
+    <button id="payment__page-title__add__btn" class="payment__page-title__add">Nova Forma de pagamento</button>
   </section>
-  <section class="payment__search">
-    <form class="payment__search__form">
+  <section id="payment__search__section" class="payment__search">
+    <form id="payment__search__form__form" class="payment__search__form">
       <label class="payment__search__form__input-box payment__search__form__input-box--little">
         <span class="payment__search__form__input-box__title">Id</span>
-        <input class="payment__search__form__input-box__input" type="number">
+        <input class="payment__search__form__input-box__input" type="number" name="id">
       </label>
       <label class="payment__search__form__input-box">
         <span class="payment__search__form__input-box__title">Nome</span>
-        <input class="payment__search__form__input-box__input" type="text">
+        <input class="payment__search__form__input-box__input" type="text" name="name">
       </label>
       <input type="submit" class="--hide">
     </form>
   </section>
-  <section class="payment__content">
+  <section id="payment__content__section" class="payment__content">
     <div class="payment__content__card">
       <div class="payment__content__card__id-box">
         <span class="payment__content__card__id-box__title">Id</span>
-        <p class="payment__content__card__id-box__content">33</p>
+        <p class="payment__content__card__id-box__content">${id}</p>
       </div>
       <div class="payment__content__card__name-box">
         <span class="payment__content__card__name-box__title">Nome</span>
-        <p class="payment__content__card__name-box__content">Cartão de Credito</p>
+        <p class="payment__content__card__name-box__content">${name}</p>
       </div>
       <div class="payment__content__card__actions-box">
-        <button class="payment__content__card__actions-box__action">Editar</button>
-        <button class="payment__content__card__actions-box__action">Excluir</button>
+        <form data-id="payment__content__card__actions-box__update-form">
+          <input type="hidden" name="type" value="update">
+          <input type="hidden" name="id" value="${id}">
+          <button class="payment__content__card__actions-box__action" type="submit">Editar</button>
+        </form>
+        <form data-id="payment__content__card__actions-box__delete-form">
+          <input type="hidden" name="type" value="delete">
+          <input type="hidden" name="id" value="${id}">
+          <button class="payment__content__card__actions-box__action" type="submit">Excluir</button>
+        </form>
       </div>
     </div>
-    <div class="payment__content__card">
-      <div class="payment__content__card__id-box">
-        <span class="payment__content__card__id-box__title">Id</span>
-        <p class="payment__content__card__id-box__content">33</p>
-      </div>
-      <div class="payment__content__card__name-box">
-        <span class="payment__content__card__name-box__title">Nome</span>
-        <p class="payment__content__card__name-box__content">Cartão de Credito</p>
-      </div>
-      <div class="payment__content__card__actions-box">
-        <button class="payment__content__card__actions-box__action">Editar</button>
-        <button class="payment__content__card__actions-box__action">Excluir</button>
-      </div>
+  </section>
+  <section id="payment__insert__section" class="payment__insert --hide">
+    <div class="payment__insert__title-box">
+      <h2 class="payment__insert__title-box__title">Forma de Pagamento</h2>
     </div>
-    <div class="payment__content__card">
-      <div class="payment__content__card__id-box">
-        <span class="payment__content__card__id-box__title">Id</span>
-        <p class="payment__content__card__id-box__content">33</p>
+    <form id="payment__insert__form__form" class="payment__insert__form">
+      <input type="hidden" name="id" value="0" id="payment__insert__form__input-box__input__id">
+      <div class="payment__insert__form__input-box">
+        <span class="payment__insert__form__input-box__title">Nome</span>
+        <input class="payment__insert__form__input-box__input" type="text" name="name" id="payment__insert__form__input-box__input__name">
       </div>
-      <div class="payment__content__card__name-box">
-        <span class="payment__content__card__name-box__title">Nome</span>
-        <p class="payment__content__card__name-box__content">Cartão de Credito</p>
+      <div id="payment__insert__form__error-box__section" class="payment__insert__form__error-box">
       </div>
-      <div class="payment__content__card__actions-box">
-        <button class="payment__content__card__actions-box__action">Editar</button>
-        <button class="payment__content__card__actions-box__action">Excluir</button>
+      <div class="payment__insert__form__submit-box">
+        <button id="payment__insert__form__submit-box__cancel__btn" type="button" class="payment__insert__form__submit-box__cancel">
+          Cancelar
+        </button>
+        <button class="payment__insert__form__submit-box__submit">
+          Salvar
+        </button>
       </div>
+    </form>
+  </section>
+  <section id="payment__dialog-message__section" class="payment__dialog-message --hide">
+    <div class="payment__dialog-message__title">
+      <span class="material-symbols-outlined payment__dialog-message__title__icon">
+        warning
+      </span>
     </div>
-    <div class="payment__content__card">
-      <div class="payment__content__card__id-box">
-        <span class="payment__content__card__id-box__title">Id</span>
-        <p class="payment__content__card__id-box__content">33</p>
-      </div>
-      <div class="payment__content__card__name-box">
-        <span class="payment__content__card__name-box__title">Nome</span>
-        <p class="payment__content__card__name-box__content">Cartão de Credito</p>
-      </div>
-      <div class="payment__content__card__actions-box">
-        <button class="payment__content__card__actions-box__action">Editar</button>
-        <button class="payment__content__card__actions-box__action">Excluir</button>
-      </div>
+    <div id="payment__dialog-message__content__text-box" class="payment__dialog-message__content">
+    </div>
+    <div class="payment__dialog-message__action-box">
+      <button id="payment__dialog-message__action-box__action__no" class="payment__dialog-message__action-box__action">Não</button>
+      <button id="payment__dialog-message__action-box__action__yes"class="payment__dialog-message__action-box__action">Sim</button>
     </div>
   </section>
 </section>
