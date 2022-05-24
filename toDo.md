@@ -1,2 +1,2 @@
 # To do
-- Atualizar arquivos payment page e server payment
+- Atualizar arquivos sale page e server sale
