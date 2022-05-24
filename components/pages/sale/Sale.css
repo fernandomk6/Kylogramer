@@ -95,14 +95,13 @@
   font-size: .8rem;
 }
 
-.sale__content__card__client-box {
+.sale__content__card__sale-box {
   margin-bottom: 20px;
   padding: 10px 0 10px 20px;
   border-left: 1px solid var(--cl-green-0);
   display: flex;
   justify-content: space-between;
 }
-
 
 .sale__content__card__product-box {
   margin-bottom: 20px;
@@ -160,6 +159,112 @@
   color: var(--cl-green-0);
   cursor: pointer;
   margin-right: 10px;
+}
+
+.sale__insert {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cl-white-0);
+  border: 1px solid var(--cl-white-2);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sale__insert__title-box {
+  display: flex;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.sale__insert__title-box__title {
+  font-size: 1.2rem;
+  color: var(--cl-black-2);
+}
+
+.sale__insert__form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* sections of form */
+.sale__insert__form__sale-box {
+  padding: 20px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: red;
+}
+
+.sale__insert__form__submit-box {
+  margin-top: 20px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid var(--cl-white-2);
+}
+
+.sale__insert__form__submit-box__submit,
+.sale__insert__form__submit-box__cancel {
+  color: var(--cl-green-0);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.sale__insert__form__error-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 40px;
+}
+
+.sale__insert__form__error-box__error {
+  color: var(--cl-red-0);
+  font-size: .8rem;
+}
+
+.sale__dialog-message {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cl-white-0);
+  border: 1px solid var(--cl-white-2);
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.sale__dialog-message__title {
+  background-color: var(--cl-yellow-0);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.material-symbols-outlined.sale__dialog-message__title__icon{
+  font-size: 2rem;
+  color: var(--cl-black-1);
+}
+
+.sale__dialog-message__content {
+  padding: 20px 10px;
+  border-bottom: 1px solid var(--cl-white-2);
+}
+
+.sale__dialog-message__action-box {
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sale__dialog-message__action-box__action {
+  background-color: transparent;
+  border: none;
+  color: var(--cl-green-0);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {

@@ -129,9 +129,10 @@ class Client {
   };
 
   clearFormData() {
-    document.querySelector("#client__insert__form__input-box__input__id").value = "0";
-    document.querySelector("#client__insert__form__input-box__input__name").value = "";
-    document.querySelector("#client__insert__form__input-box__input__phone").value = "";
+    let form = document.querySelector("#client__insert__form__form");
+    form.id.value = "0";
+    form.name.value = "";
+    form.phone.value = "";
     document.querySelector("#client__insert__form__error-box__section").innerHTML = "";
   };
 

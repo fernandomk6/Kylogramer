@@ -1,2 +1,3 @@
 # To do
-- Atualizar arquivos sale page e server sale
+- Estiliar form page sale
+- Atualizar sale js e server sale

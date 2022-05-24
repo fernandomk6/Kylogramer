@@ -122,8 +122,9 @@ class Payment {
   };
 
   clearFormData() {
-    document.querySelector("#payment__insert__form__input-box__input__id").value = "0";
-    document.querySelector("#payment__insert__form__input-box__input__name").value = "";
+    let form = document.querySelector("#payment__insert__form__form");
+    form.id.value = "0";
+    form.name.value = "";
     document.querySelector("#payment__insert__form__error-box__section").innerHTML = "";
   };
 

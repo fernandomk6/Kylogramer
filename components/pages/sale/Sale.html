@@ -1,296 +1,152 @@
 <section id="sale" class="sale --hide">
-  <section class="sale__page-title">
+  <section id="sale__page-title__section" class="sale__page-title">
     <h2>Vendas</h2>
-    <button class="sale__page-title__add">Nova Venda</button>
+    <button id="sale__page-title__add__btn" class="sale__page-title__add">Nova Venda</button>
   </section>
-  <section class="sale__search">
-    <form class="sale__search__form">
+  <section id="sale__search__section" class="sale__search">
+    <form id="sale__search__form__form" class="sale__search__form">
       <label class="sale__search__form__input-box sale__search__form__input-box--little">
         <span class="sale__search__form__input-box__title">Id</span>
-        <input class="sale__search__form__input-box__input" type="number">
+        <input class="sale__search__form__input-box__input" type="number" step="0.01" min="0" name="id">
       </label>
       <label class="sale__search__form__input-box">
         <span class="sale__search__form__input-box__title">Cliente</span>
-        <input class="sale__search__form__input-box__input" type="text">
+        <input class="sale__search__form__input-box__input" type="text" name="client-name">
       </label>
       <label class="sale__search__form__input-box sale__search__form__input-box--medium">
         <span class="sale__search__form__input-box__title">Data</span>
-        <input class="sale__search__form__input-box__input" type="date">
+        <input class="sale__search__form__input-box__input" type="date" name="date">
       </label>
       <label class="sale__search__form__input-box sale__search__form__input-box--little">
-        <span class="sale__search__form__input-box__title">Preço ( &lt )</span>
-        <input class="sale__search__form__input-box__input" type="text">
+        <span class="sale__search__form__input-box__title">Total ( &lt )</span>
+        <input class="sale__search__form__input-box__input" type="number" step="0.01" min="0" name="total">
       </label>
       <label class="sale__search__form__input-box">
         <span class="sale__search__form__input-box__title">Forma de Pagamento</span>
-        <select class="sale__search__form__input-box__input">
-          <option value=""></option>
-          <option value="">Pix</option>
-          <option value="">Cartão</option>
-          <option value="">Boleto</option>
-        </select>
+        <input class="sale__search__form__input-box__input" type="text" name="payment-name">
       </label>
       <input type="submit" class="--hide">
     </form>
   </section>
-  <section class="sale__content">
+  <section id="sale__content__section" class="sale__content">
     <div class="sale__content__card">
       <div class="sale__content__card__sale-box">
         <div class="sale__content__card__sale-box__id-box">
           <span class="sale__content__card__sale-box__id-box__title">Id</span>
-          <p class="sale__content__card__sale-box__id-box__content">2</p>
+          <p class="sale__content__card__sale-box__id-box__content">${id}</p>
         </div>
         <div class="sale__content__card__sale-box__date-box">
           <span class="sale__content__card__sale-box__date-box__title">Data</span>
-          <p class="sale__content__card__sale-box__date-box__content">22/22/2022</p>
+          <p class="sale__content__card__sale-box__date-box__content">${date}</p>
         </div>
       </div>
-      <div class="sale__content__card__client-box">
-        <p class="sale__content__card__client-box__name-box">
-          Fernando Henrique Pontes Pereira
+      <div class="sale__content__card__sale-box">
+        <p class="sale__content__card__sale-box__name-box">
+          ${clientName}
         </p>
-        <p class="sale__content__card__client-box__phone-box">
-          (85)985680757
+        <p class="sale__content__card__sale-box__phone-box">
+          ${clientPhone}
         </p>
       </div>
       <div class="sale__content__card__product-box">
         <div class="sale__content__card__product-box__product">
           <p class="sale__content__card__product-box__product__name-box">
-            Teleston
+            ${productName}
           </p>
           <p class="sale__content__card__product-box__product__quantity-box">
-            <span>15</span>
+            <span>${productQuantity}</span>
             <span>KG</span>
           </p>
           <p class="sale__content__card__product-box__product__price-box">
             <span>R$</span>
-            <span>15,00</span>
-          </p>
-        </div>
-        <div class="sale__content__card__product-box__product">
-          <p class="sale__content__card__product-box__product__name-box">
-            Takanato
-          </p>
-          <p class="sale__content__card__product-box__product__quantity-box">
-            18 KG
-          </p>
-          <p class="sale__content__card__product-box__product__price-box">
-            R$ 99,88
-          </p>
-        </div>
-        <div class="sale__content__card__product-box__product">
-          <p class="sale__content__card__product-box__product__name-box">
-            Presley Kid
-          </p>
-          <p class="sale__content__card__product-box__product__quantity-box">
-            1 KG
-          </p>
-          <p class="sale__content__card__product-box__product__price-box">
-            R$ 1.586,99
+            <span>${productPrice}</span>
           </p>
         </div>
       </div>
       <div class="sale__content__card__payment-box">
         <div class="sale__content__card__payment-box__payment">
           <p class="sale__content__card__payment-box__payment__name-box">
-            Pix
+            ${paymentName}
           </p>
           <p class="sale__content__card__payment-box__payment__tatal-box">
             <span>R$</span>
-            <span>18,55</span>
-          </p>
-        </div>
-        <div class="sale__content__card__payment-box__payment">
-          <p class="sale__content__card__payment-box__payment__name-box">
-            Cartão de Credito
-          </p>
-          <p class="sale__content__card__payment-box__payment__tatal-box">
-            <span>R$</span>
-            <span>22,55</span>
+            <span>${paymentTotal}</span>
           </p>
         </div>
       </div>
       <div class="sale__content__card__total-box">
         <p class="sale__content__card__total-box__content">
-          R$ 869,99
+          ${saleTotal}
         </p>
       </div>
       <div class="sale__content__card__actions-box">
-        <button class="sale__content__card__actions-box__action">Editar</button>
-        <button class="sale__content__card__actions-box__action">Excluir</button>
+        <form data-id="sale__content__card__actions-box__update-form">
+          <input type="hidden" name="type" value="update">
+          <input type="hidden" name="id" value="${id}">
+          <button class="sale__content__card__actions-box__action" type="submit">Editar</button>
+        </form>
+        <form data-id="sale__content__card__actions-box__delete-form">
+          <input type="hidden" name="type" value="delete">
+          <input type="hidden" name="id" value="${id}">
+          <button class="sale__content__card__actions-box__action" type="submit">Excluir</button>
+        </form>
       </div>
     </div>
-    <div class="sale__content__card">
-      <div class="sale__content__card__sale-box">
-        <div class="sale__content__card__sale-box__id-box">
-          <span class="sale__content__card__sale-box__id-box__title">Id</span>
-          <p class="sale__content__card__sale-box__id-box__content">2</p>
-        </div>
-        <div class="sale__content__card__sale-box__date-box">
-          <span class="sale__content__card__sale-box__date-box__title">Data</span>
-          <p class="sale__content__card__sale-box__date-box__content">22/22/2022</p>
-        </div>
-      </div>
-      <div class="sale__content__card__client-box">
-        <p class="sale__content__card__client-box__name-box">
-          Fernando Henrique Pontes Pereira
-        </p>
-        <p class="sale__content__card__client-box__phone-box">
-          (85)985680757
-        </p>
-      </div>
-      <div class="sale__content__card__product-box">
-        <div class="sale__content__card__product-box__product">
-          <p class="sale__content__card__product-box__product__name-box">
-            Teleston
-          </p>
-          <p class="sale__content__card__product-box__product__quantity-box">
-            <span>15</span>
-            <span>KG</span>
-          </p>
-          <p class="sale__content__card__product-box__product__price-box">
-            <span>R$</span>
-            <span>15,00</span>
-          </p>
-        </div>
-        <div class="sale__content__card__product-box__product">
-          <p class="sale__content__card__product-box__product__name-box">
-            Takanato
-          </p>
-          <p class="sale__content__card__product-box__product__quantity-box">
-            18 KG
-          </p>
-          <p class="sale__content__card__product-box__product__price-box">
-            R$ 99,88
-          </p>
-        </div>
-        <div class="sale__content__card__product-box__product">
-          <p class="sale__content__card__product-box__product__name-box">
-            Presley Kid
-          </p>
-          <p class="sale__content__card__product-box__product__quantity-box">
-            1 KG
-          </p>
-          <p class="sale__content__card__product-box__product__price-box">
-            R$ 1.586,99
-          </p>
-        </div>
-      </div>
-      <div class="sale__content__card__payment-box">
-        <div class="sale__content__card__payment-box__payment">
-          <p class="sale__content__card__payment-box__payment__name-box">
-            Pix
-          </p>
-          <p class="sale__content__card__payment-box__payment__tatal-box">
-            <span>R$</span>
-            <span>18,55</span>
-          </p>
-        </div>
-        <div class="sale__content__card__payment-box__payment">
-          <p class="sale__content__card__payment-box__payment__name-box">
-            Cartão de Credito
-          </p>
-          <p class="sale__content__card__payment-box__payment__tatal-box">
-            <span>R$</span>
-            <span>22,55</span>
-          </p>
-        </div>
-      </div>
-      <div class="sale__content__card__total-box">
-        <p class="sale__content__card__total-box__content">
-          R$ 869,99
-        </p>
-      </div>
-      <div class="sale__content__card__actions-box">
-        <button class="sale__content__card__actions-box__action">Editar</button>
-        <button class="sale__content__card__actions-box__action">Excluir</button>
-      </div>
+  </section>
+  <section id="sale__insert__section" class="sale__insert">
+    <div class="sale__insert__title-box">
+      <h2 class="sale__insert__title-box__title">Venda</h2>
     </div>
-    <div class="sale__content__card">
-      <div class="sale__content__card__sale-box">
-        <div class="sale__content__card__sale-box__id-box">
-          <span class="sale__content__card__sale-box__id-box__title">Id</span>
-          <p class="sale__content__card__sale-box__id-box__content">2</p>
+    <form id="sale__insert__form__form" class="sale__insert__form">
+      <input type="hidden" name="id" value="0">
+
+
+
+
+
+      <div class="sale__insert__form__sale-box">
+
+
+
+        <div class="sale__insert__form__sale-box__client-box">
+          <span class="sale__insert__form__sale-box__client-box__title">Cliente</span>
+          <div class="sale__insert__form__sale-box__client-box__name">Fernando</div>
+          <input type="hidden" name="sale-client-id">
         </div>
-        <div class="sale__content__card__sale-box__date-box">
-          <span class="sale__content__card__sale-box__date-box__title">Data</span>
-          <p class="sale__content__card__sale-box__date-box__content">22/22/2022</p>
+
+        <div class="sale__insert__form__sale-box__date-box">
+          <span class="sale__insert__form__sale-box__date-box__title">Data</span>
+          <input class="sale__insert__form__sale-box__date-box__input" name="sale-date" type="date">
         </div>
+
+
+
       </div>
-      <div class="sale__content__card__client-box">
-        <p class="sale__content__card__client-box__name-box">
-          Fernando Henrique Pontes Pereira
-        </p>
-        <p class="sale__content__card__client-box__phone-box">
-          (85)985680757
-        </p>
+
+
+      <div id="sale__insert__form__error-box__section" class="sale__insert__form__error-box">
       </div>
-      <div class="sale__content__card__product-box">
-        <div class="sale__content__card__product-box__product">
-          <p class="sale__content__card__product-box__product__name-box">
-            Teleston
-          </p>
-          <p class="sale__content__card__product-box__product__quantity-box">
-            <span>15</span>
-            <span>KG</span>
-          </p>
-          <p class="sale__content__card__product-box__product__price-box">
-            <span>R$</span>
-            <span>15,00</span>
-          </p>
-        </div>
-        <div class="sale__content__card__product-box__product">
-          <p class="sale__content__card__product-box__product__name-box">
-            Takanato
-          </p>
-          <p class="sale__content__card__product-box__product__quantity-box">
-            18 KG
-          </p>
-          <p class="sale__content__card__product-box__product__price-box">
-            R$ 99,88
-          </p>
-        </div>
-        <div class="sale__content__card__product-box__product">
-          <p class="sale__content__card__product-box__product__name-box">
-            Presley Kid
-          </p>
-          <p class="sale__content__card__product-box__product__quantity-box">
-            1 KG
-          </p>
-          <p class="sale__content__card__product-box__product__price-box">
-            R$ 1.586,99
-          </p>
-        </div>
+      <div class="sale__insert__form__submit-box">
+        <button id="sale__insert__form__submit-box__cancel__btn" type="button" class="sale__insert__form__submit-box__cancel">
+          Cancelar
+        </button>
+        <button class="sale__insert__form__submit-box__submit">
+          Salvar
+        </button>
       </div>
-      <div class="sale__content__card__payment-box">
-        <div class="sale__content__card__payment-box__payment">
-          <p class="sale__content__card__payment-box__payment__name-box">
-            Pix
-          </p>
-          <p class="sale__content__card__payment-box__payment__tatal-box">
-            <span>R$</span>
-            <span>18,55</span>
-          </p>
-        </div>
-        <div class="sale__content__card__payment-box__payment">
-          <p class="sale__content__card__payment-box__payment__name-box">
-            Cartão de Credito
-          </p>
-          <p class="sale__content__card__payment-box__payment__tatal-box">
-            <span>R$</span>
-            <span>22,55</span>
-          </p>
-        </div>
-      </div>
-      <div class="sale__content__card__total-box">
-        <p class="sale__content__card__total-box__content">
-          R$ 869,99
-        </p>
-      </div>
-      <div class="sale__content__card__actions-box">
-        <button class="sale__content__card__actions-box__action">Editar</button>
-        <button class="sale__content__card__actions-box__action">Excluir</button>
-      </div>
+    </form>
+  </section>
+  <section id="sale__dialog-message__section" class="sale__dialog-message --hide">
+    <div class="sale__dialog-message__title">
+      <span class="material-symbols-outlined sale__dialog-message__title__icon">
+        warning
+      </span>
+    </div>
+    <div id="sale__dialog-message__content__text-box" class="sale__dialog-message__content">
+    </div>
+    <div class="sale__dialog-message__action-box">
+      <button id="sale__dialog-message__action-box__action__no" class="sale__dialog-message__action-box__action">Não</button>
+      <button id="sale__dialog-message__action-box__action__yes"class="sale__dialog-message__action-box__action">Sim</button>
     </div>
   </section>
 </section>

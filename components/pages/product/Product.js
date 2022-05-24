@@ -129,9 +129,10 @@ class Product {
   };
 
   clearFormData() {
-    document.querySelector("#product__insert__form__input-box__input__id").value = "0";
-    document.querySelector("#product__insert__form__input-box__input__name").value = "";
-    document.querySelector("#product__insert__form__input-box__input__price").value = "";
+    let form =document.querySelector("#product__insert__form__form");
+    form.id.value = "0";
+    form.name.value = "";
+    form.price.value = "";
     document.querySelector("#product__insert__form__error-box__section").innerHTML = "";
   };
 
