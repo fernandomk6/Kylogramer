@@ -138,8 +138,9 @@ class Sale {
   // };
 
   // validation() {
-  //   let name = document.querySelector("#sale__insert__form__input-box__input__name").value;
-  //   let phone = document.querySelector("#sale__insert__form__input-box__input__phone").value;
+  //   let form = document.querySelector("#sale__insert__form__form");
+  //   let name = form.name.value;
+  //   let phone = form.phone.value;
   //   let errorsSection = document.querySelector("#sale__insert__form__error-box__section");
 
   //   errorsSection.innerHTML = "";

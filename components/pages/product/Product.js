@@ -137,8 +137,9 @@ class Product {
   };
 
   validation() {
-    let name = document.querySelector("#product__insert__form__input-box__input__name").value;
-    let price = document.querySelector("#product__insert__form__input-box__input__price").value;
+    let form = document.querySelector("#product__insert__form__form");
+    let name = form.name.value;
+    let price = form.price.value;
     let errorsSection = document.querySelector("#product__insert__form__error-box__section");
 
     errorsSection.innerHTML = "";
