@@ -61,9 +61,12 @@ if (isset($_GET) && !empty($_GET)) {
   }
 
   if ($_GET['type'] == "search") {
-    
+
     $name = "%".$_GET['name']."%";
-    $price = "%".$_GET['price']."%";
+
+    if (empty($_GET['price'])) {
+      $_GET['price'] = "99999999999";
+    }
 
     if (!empty($_GET['id'])) {
 
@@ -71,13 +74,14 @@ if (isset($_GET) && !empty($_GET)) {
               FROM `product`
               WHERE deleted = 0
               AND name LIKE :name
-              AND price LIKE :price
-              AND id = :id";
+              AND price < :price
+              AND id = :id
+              ORDER BY id DESC";
 
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':id', $_GET['id']);
       $stmt->bindParam(':name', $name);
-      $stmt->bindParam(':price', $price);
+      $stmt->bindParam(':price', $_GET['price']);
       $stmt->execute();
       echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
       exit();
@@ -88,11 +92,12 @@ if (isset($_GET) && !empty($_GET)) {
               FROM `product`
               WHERE deleted = 0
               AND name LIKE :name
-              AND price LIKE :price";
+              AND price < :price
+              ORDER BY id DESC";
 
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':name', $name);
-      $stmt->bindParam(':price', $price);
+      $stmt->bindParam(':price', $_GET['price']);
       $stmt->execute();
       echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
       exit();

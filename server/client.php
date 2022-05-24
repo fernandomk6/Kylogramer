@@ -73,7 +73,8 @@ if (isset($_GET) && !empty($_GET)) {
               WHERE deleted = 0
               AND name LIKE :name
               AND phone LIKE :phone
-              AND id = :id";
+              AND id = :id
+              ORDER BY id DESC";
 
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':id', $_GET['id']);
@@ -89,7 +90,8 @@ if (isset($_GET) && !empty($_GET)) {
               FROM `client`
               WHERE deleted = 0
               AND name LIKE :name
-              AND phone LIKE :phone";
+              AND phone LIKE :phone
+              ORDER BY id DESC";
 
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':name', $name);

@@ -15,7 +15,7 @@
       </label>
       <label class="product__search__form__input-box product__search__form__input-box--little">
         <span class="product__search__form__input-box__title">Preço ( &lt )</span>
-        <input class="product__search__form__input-box__input" type="text" name="price">
+        <input class="product__search__form__input-box__input" type="number" min="0" step="0.01" name="price">
       </label>
       <input type="submit" class="--hide">
     </form>
@@ -63,7 +63,7 @@
       </div>
       <div class="product__insert__form__input-box">
         <span class="product__insert__form__input-box__title">Preço KG</span>
-        <input class="product__insert__form__input-box__input" type="number" name="price" id="product__insert__form__input-box__input__price">
+        <input class="product__insert__form__input-box__input" type="number" name="price" id="product__insert__form__input-box__input__price" min="0" step="0.01">
       </div>
       <div id="product__insert__form__error-box__section" class="product__insert__form__error-box">
       </div>

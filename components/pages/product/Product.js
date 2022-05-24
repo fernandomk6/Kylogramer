@@ -181,6 +181,9 @@ class Product {
       this.sections.content.innerHTML = "";
 
       for (const product of data) {
+
+        product.price = parseFloat(product.price).toLocaleString('pt-br', {minimumFractionDigits: 2});
+
         let card = this.buildCard(product.id, product.name, product.price);
         this.sections.content.innerHTML += card;
       }
@@ -270,10 +273,13 @@ class Product {
         });
   
         const data = await res.json();
-        
+
         this.sections.content.innerHTML = "";
         
         for (const product of data) {
+
+          product.price = parseFloat(product.price).toLocaleString('pt-br', {minimumFractionDigits: 2});
+          
           let card = this.buildCard(product.id, product.name, product.price);
           this.sections.content.innerHTML += card;
         }
