@@ -3,6 +3,7 @@ class Client {
   constructor() {
     this.loadCards();
     this.form();
+    this.search();
   };
 
   sections = {
@@ -254,6 +255,35 @@ class Client {
 
   search() {
 
+    let form = document.querySelector("#client__search__form__form");
+
+    form.onsubmit = (e) => {
+      e.preventDefault();
+
+      (async () => {
+
+        const res = await fetch(`./server/client.php?type=search&id=${e.target.id.value}&name=${e.target.name.value}&phone=${e.target.phone.value}`, {
+          method: "GET",
+          headers: {
+            contentType: "application/json"
+          }
+        });
+  
+        const data = await res.json();
+        
+        this.sections.content.innerHTML = "";
+        
+        for (const client of data) {
+          let card = this.buildCard(client.id, client.name, client.phone);
+          this.sections.content.innerHTML += card;
+        }
+  
+        this.delete();
+        this.update();
+        this.showCards();
+  
+      })();
+    };
   };
 
 }

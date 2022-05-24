@@ -64,4 +64,44 @@ if (isset($_GET) && !empty($_GET)) {
     exit();
     
   }
+
+  if ($_GET['type'] == "search") {
+    
+    $name = "%".$_GET['name']."%";
+    $phone = "%".$_GET['phone']."%";
+
+    if (!empty($_GET['id'])) {
+
+      $sql = "SELECT *
+              FROM `client`
+              WHERE deleted = 0
+              AND name LIKE :name
+              AND phone LIKE :phone
+              AND id = :id";
+
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':id', $_GET['id']);
+      $stmt->bindParam(':name', $name);
+      $stmt->bindParam(':phone', $phone);
+      $stmt->execute();
+      echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+      exit();
+
+    } else {
+
+      $sql = "SELECT *
+              FROM `client`
+              WHERE deleted = 0
+              AND name LIKE :name
+              AND phone LIKE :phone";
+
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':name', $name);
+      $stmt->bindParam(':phone', $phone);
+      $stmt->execute();
+      echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+      exit();
+    }
+
+  }
 }
