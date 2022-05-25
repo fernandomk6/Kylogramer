@@ -1,3 +1,3 @@
 # To do
 - Estiliar form page sale
-- Atualizar sale js e server sale
+  - Conferir classes CSS form sale
