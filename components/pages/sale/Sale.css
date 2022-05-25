@@ -186,15 +186,9 @@
   flex-direction: column;
 }
 
-/* sections of form */
-.sale__insert__form__sale-box {
-  padding: 20px 40px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  background-color: red;
-}
+/* form sections */
+
+
 
 .sale__insert__form__submit-box {
   margin-top: 20px;
