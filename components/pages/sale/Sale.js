@@ -247,8 +247,11 @@ class Sale {
       // limpando todos os cards
       this.sections.content.innerHTML = "";
 
+      // iterando as vendas e buildando o card
       for (const client of data) {
         let card = this.buildCard(client.id, client.name, client.phone);
+
+        // inserindo o card dentro do container dos cards
         this.sections.content.innerHTML += card;
       }
 

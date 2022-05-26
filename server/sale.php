@@ -42,29 +42,27 @@ if (isset($_GET) && !empty($_GET)) {
 
   if ($_GET['type'] == "selectAll") {
 
-    $sql = "SELECT * FROM sale WHERE deleted = 0";
+    $sql = "SELECT sale.id, sale.client_id, client.name, sale.date, sale.total
+            FROM sale, client
+            WHERE sale.client_id = client.id 
+            AND sale.deleted = 0";
+
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $sql = "SELECT 
-              sale.id AS 'sale__id', 
-              client.name AS 'sale__client_name',
-              client.id AS 'sale__client_id',
-              sale.date AS 'sale__date',
-              sale.total AS 'sale__total',
-              product.name AS 'product__name',
-              product.id AS 'product__id',
-              sale_product.kilogram AS 'product__kiloram',
-              sale_product.unitary AS 'product__unitary'
+              product.name,
+              sale_product.sale_id,
+              sale_product.product_id,
+              sale_product.kilogram,
+              sale_product.unitary
             FROM 
-              sale, sale_product, product, client
+              sale, sale_product, product
             WHERE 
               sale.id = sale_product.sale_id
             AND 
               sale_product.product_id = product.id
-            AND
-              sale.client_id = client.id
             AND
               sale.deleted = 0";
 
@@ -73,22 +71,16 @@ if (isset($_GET) && !empty($_GET)) {
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $sql = "SELECT 
-              sale.id AS 'sale__id',
-              client.name AS 'sale__client_name', 
-              client.id AS 'sale__client_id',
-              sale.date AS 'sale__date', 
-              sale.total AS 'sale__total', 
-              payment.name AS 'payment__name',
-              payment.id AS 'payment__id', 
-              sale_payment.total AS 'payment__total' 
+              payment.name,
+              sale_payment.sale_id,
+              sale_payment.payment_id, 
+              sale_payment.total
             FROM 
-              sale, sale_payment, payment, client 
+              sale, sale_payment, payment
             WHERE 
               sale.id = sale_payment.sale_id 
             AND 
-              sale_payment.payment_id = payment.id 
-            AND 
-              sale.client_id = client.id 
+              sale_payment.payment_id = payment.id
             AND 
               sale.deleted = 0";
 
@@ -96,36 +88,31 @@ if (isset($_GET) && !empty($_GET)) {
     $stmt->execute();
     $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    $allSales= []; 
 
-    $allSales= []; // array contendo arrys de cada venda
+    foreach ($sales as $sale) {
 
-    // iterando cada id de venda $value
-    foreach ($sales as $id => $value) {
-      // array modelo de saida
-      $atualSale = [
-        "id",
-        "date",
-        "client_id",
-        "client_name",
-        "total",
-        "products" => [
-          "id",
-          "name",
-          "kiloram",
-          "unitary",
-          "total"
-        ],
-        "payment" => [
-          "id",
-          "name",
-          "total"
-        ],
+      $actualSale = [
+        "id" => $sale['id'],
+        "client_id" => $sale['client_id'],
+        "client_name" => $sale['name'],
+        "total" => $sale['total'],
+        "products" => [],
+        "payments" => [],
       ];
-       
-      // montar array modelo com os dados do banco
 
+      foreach ($products as $product) {
+        if ($product['sale_id'] == $sale['id']) {
+          array_push($actualSale["products"], $product); 
+        }
+      }
 
-      // adicionar array atual no allSales
+      foreach ($payments as $payment) {
+        if ($payment['payment_id'] == $sale['id']) {
+          array_push($actualSale["payments"], $payment);
+        }
+      }
+
       $allSales[] = $actualSale;
     }
 
@@ -135,18 +122,25 @@ if (isset($_GET) && !empty($_GET)) {
 
   if ($_GET['type'] == "selectById") {
 
+    $sql = "SELECT sale.id, sale.client_id, client.name, sale.date, sale.total
+            FROM sale, client
+            WHERE sale.client_id = client.id
+            AND sale.id = :id
+            AND sale.deleted = 0";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $_GET['id']);
+    $stmt->execute();
+    $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     $sql = "SELECT 
-              sale.id AS 'sale__id', 
-              client.name AS 'sale__client_name',
-              client.id AS 'sale__client_id',
-              sale.date AS 'sale__date',
-              sale.total AS 'sale__total',
-              product.name AS 'product__name',
-              product.id AS 'product__id',
-              sale_product.kilogram AS 'product__kiloram',
-              sale_product.unitary AS 'product__unitary'
+              product.name,
+              sale_product.sale_id,
+              sale_product.product_id,
+              sale_product.kilogram,
+              sale_product.unitary
             FROM 
-              sale, sale_product, product, client
+              sale, sale_product, product
             WHERE 
               sale.id = sale_product.sale_id
             AND 
@@ -154,45 +148,63 @@ if (isset($_GET) && !empty($_GET)) {
             AND
               sale.id = :id
             AND
-              sale.client_id = client.id
-            AND
               sale.deleted = 0";
-  
+
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
-    $products = $stmt->fetch(PDO::FETCH_ASSOC);
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $sql = "SELECT 
-              sale.id AS 'sale__id', 
-              client.name AS 'sale__client name',
-              client.id AS 'sale__client_id',
-              sale.date AS 'sale__date',
-              sale.total AS 'sale__total',
-              payment.name AS 'payment__name',
-              payment.id AS 'payment__id',
-              sale_payment.total AS 'payment__total'
+              payment.name,
+              sale_payment.sale_id,
+              sale_payment.payment_id, 
+              sale_payment.total
             FROM 
-              sale, sale_payment, payment, client
+              sale, sale_payment, payment
             WHERE 
-              sale.id = sale_payment.sale_id
+              sale.id = sale_payment.sale_id 
             AND 
               sale_payment.payment_id = payment.id
             AND
               sale.id = :id
-            AND
-              sale.client_id = client.id
-            AND
+            AND 
               sale.deleted = 0";
-  
+
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
-    $payments = $stmt->fetch(PDO::FETCH_ASSOC);
+    $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    
+    $allSales= []; 
 
-    echo json_encode(["products" => $products, "payments" => $payments]);
+    foreach ($sales as $sale) {
+
+      $actualSale = [
+        "id" => $sale['id'],
+        "client_id" => $sale['client_id'],
+        "client_name" => $sale['name'],
+        "total" => $sale['total'],
+        "products" => [],
+        "payments" => [],
+      ];
+
+      foreach ($products as $product) {
+        if ($product['sale_id'] == $sale['id']) {
+          array_push($actualSale["products"], $product); 
+        }
+      }
+
+      foreach ($payments as $payment) {
+        if ($payment['payment_id'] == $sale['id']) {
+          array_push($actualSale["payments"], $payment);
+        }
+      }
+
+      $allSales[] = $actualSale;
+    }
+
+    echo json_encode($allSales);
     exit();
     
   }
