@@ -1,293 +1,293 @@
 class Sale {
  
-  // constructor() {
-  //   this.loadCards();
-  //   this.form();
-  //   this.search();
-  // };
+  constructor() {
+    this.loadCards();
+    this.form();
+    this.search();
+  };
 
-  // sections = {
-  //   pageTitle: document.querySelector("#sale__page-title__section"),
-  //   search: document.querySelector("#sale__search__section"),
-  //   content: document.querySelector("#sale__content__section"),
-  //   insert: document.querySelector("#sale__insert__section"),
-  //   dialogMessage: document.querySelector("#sale__dialog-message__section")
-  // };
+  sections = {
+    pageTitle: document.querySelector("#sale__page-title__section"),
+    search: document.querySelector("#sale__search__section"),
+    content: document.querySelector("#sale__content__section"),
+    insert: document.querySelector("#sale__insert__section"),
+    dialogMessage: document.querySelector("#sale__dialog-message__section")
+  };
 
-  // buildCard(id, name, phone) {
-  //   let card = `<div class="sale__content__card">
-  //                 <div class="sale__content__card__id-box">
-  //                   <span class="sale__content__card__id-box__title">Id</span>
-  //                   <p class="sale__content__card__id-box__content">${id}</p>
-  //                 </div>
-  //                 <div class="sale__content__card__name-box">
-  //                   <span class="sale__content__card__name-box__title">Nome</span>
-  //                   <p class="sale__content__card__name-box__content">${name}</p>
-  //                 </div>
-  //                 <div class="sale__content__card__phone-box">
-  //                   <span class="sale__content__card__phone-box__title">Telefone</span>
-  //                   <p class="sale__content__card__phone-box__content">${phone}</p>
-  //                 </div>
-  //                 <div class="sale__content__card__actions-box">
+  buildCard(id, name, phone) {
+    let card = `<div class="sale__content__card">
+                  <div class="sale__content__card__id-box">
+                    <span class="sale__content__card__id-box__title">Id</span>
+                    <p class="sale__content__card__id-box__content">${id}</p>
+                  </div>
+                  <div class="sale__content__card__name-box">
+                    <span class="sale__content__card__name-box__title">Nome</span>
+                    <p class="sale__content__card__name-box__content">${name}</p>
+                  </div>
+                  <div class="sale__content__card__phone-box">
+                    <span class="sale__content__card__phone-box__title">Telefone</span>
+                    <p class="sale__content__card__phone-box__content">${phone}</p>
+                  </div>
+                  <div class="sale__content__card__actions-box">
 
-  //                   <form data-id="sale__content__card__actions-box__update-form">
-  //                     <input type="hidden" name="type" value="update">
-  //                     <input type="hidden" name="id" value="${id}">
-  //                     <button class="sale__content__card__actions-box__action" type="submit">Editar</button>
-  //                   </form>
+                    <form data-id="sale__content__card__actions-box__update-form">
+                      <input type="hidden" name="type" value="update">
+                      <input type="hidden" name="id" value="${id}">
+                      <button class="sale__content__card__actions-box__action" type="submit">Editar</button>
+                    </form>
 
-  //                   <form data-id="sale__content__card__actions-box__delete-form">
-  //                     <input type="hidden" name="type" value="delete">
-  //                     <input type="hidden" name="id" value="${id}">
-  //                     <button class="sale__content__card__actions-box__action" type="submit">Excluir</button>
-  //                   </form>
+                    <form data-id="sale__content__card__actions-box__delete-form">
+                      <input type="hidden" name="type" value="delete">
+                      <input type="hidden" name="id" value="${id}">
+                      <button class="sale__content__card__actions-box__action" type="submit">Excluir</button>
+                    </form>
 
-  //                 </div>
-  //               </div>`;
-  //   return card;
-  // };
+                  </div>
+                </div>`;
+    return card;
+  };
 
-  // form() {
-  //   let form = document.querySelector("#sale__insert__form__form");
-  //   let btnOpenForm = document.querySelector("#sale__page-title__add__btn");
-  //   let btnCancelForm = document.querySelector("#sale__insert__form__submit-box__cancel__btn");
+  form() {
+    let form = document.querySelector("#sale__insert__form__form");
+    let btnOpenForm = document.querySelector("#sale__page-title__add__btn");
+    let btnCancelForm = document.querySelector("#sale__insert__form__submit-box__cancel__btn");
 
-  //   btnOpenForm.onclick = () => {
-  //     this.showForm();
-  //   };
+    btnOpenForm.onclick = () => {
+      this.showForm();
+    };
 
-  //   btnCancelForm.onclick = () => {
-  //     this.clearFormData();
-  //     this.showCards();
-  //   };
+    btnCancelForm.onclick = () => {
+      this.clearFormData();
+      this.showCards();
+    };
 
-  //   form.onsubmit = (e) => {
-  //     e.preventDefault();
+    form.onsubmit = (e) => {
+      e.preventDefault();
 
-  //     if (this.validation()) {
-  //       let formData = new FormData(form);
-  //       formData.append("type", "insert");
-  //       this.clearFormData();
+      if (this.validation()) {
+        let formData = new FormData(form);
+        formData.append("type", "insert");
+        this.clearFormData();
 
-  //       (async () => {
-  //         await fetch('./server/client.php', {
-  //           method: "POST",
-  //           header: {
-  //             ContentType: "application/json"
-  //           },
-  //           body: formData
-  //         });
+        (async () => {
+          await fetch('./server/sale.php', {
+            method: "POST",
+            header: {
+              ContentType: "application/json"
+            },
+            body: formData
+          });
 
-  //         this.loadCards();
+          this.loadCards();
 
-  //       })();
+        })();
 
-  //     }
-  //   }
-  // };
+      }
+    }
+  };
 
-  // showForm() {
-  //   this.sections.pageTitle.classList.add("--hide");
-  //   this.sections.search.classList.add("--hide");
-  //   this.sections.content.classList.add("--hide");
-  //   this.sections.dialogMessage.classList.add("--hide");
-  //   this.sections.insert.classList.remove("--hide");
-  // };
+  showForm() {
+    this.sections.pageTitle.classList.add("--hide");
+    this.sections.search.classList.add("--hide");
+    this.sections.content.classList.add("--hide");
+    this.sections.dialogMessage.classList.add("--hide");
+    this.sections.insert.classList.remove("--hide");
+  };
 
-  // showCards() {
-  //   this.sections.pageTitle.classList.remove("--hide");
-  //   this.sections.search.classList.remove("--hide");
-  //   this.sections.content.classList.remove("--hide");
-  //   this.sections.insert.classList.add("--hide");
-  //   this.sections.dialogMessage.classList.add("--hide");
-  // };
+  showCards() {
+    this.sections.pageTitle.classList.remove("--hide");
+    this.sections.search.classList.remove("--hide");
+    this.sections.content.classList.remove("--hide");
+    this.sections.insert.classList.add("--hide");
+    this.sections.dialogMessage.classList.add("--hide");
+  };
 
-  // showDialogMessage(action, message) {
+  showDialogMessage(action, message) {
 
-  //   let btnYes = document.querySelector("#sale__dialog-message__action-box__action__yes");
-  //   let btnNo = document.querySelector("#sale__dialog-message__action-box__action__no");
-  //   let textBox = document.querySelector("#sale__dialog-message__content__text-box");
-  //   textBox.innerHTML = "";
-  //   let span = document.createElement("span");
-  //   span.classList.add("sale__dialog-message__content__message");
-  //   span.innerHTML = message;
-  //   textBox.appendChild(span);
+    let btnYes = document.querySelector("#sale__dialog-message__action-box__action__yes");
+    let btnNo = document.querySelector("#sale__dialog-message__action-box__action__no");
+    let textBox = document.querySelector("#sale__dialog-message__content__text-box");
+    textBox.innerHTML = "";
+    let span = document.createElement("span");
+    span.classList.add("sale__dialog-message__content__message");
+    span.innerHTML = message;
+    textBox.appendChild(span);
 
-  //   btnNo.onclick = () => {
-  //     this.loadCards();
-  //   };
+    btnNo.onclick = () => {
+      this.loadCards();
+    };
 
-  //   btnYes.onclick = () => {
-  //     action();
-  //   };
+    btnYes.onclick = () => {
+      action();
+    };
 
-  //   this.sections.pageTitle.classList.add("--hide");
-  //   this.sections.search.classList.add("--hide");
-  //   this.sections.content.classList.add("--hide");
-  //   this.sections.insert.classList.add("--hide");
-  //   this.sections.dialogMessage.classList.remove("--hide");
-  // };
+    this.sections.pageTitle.classList.add("--hide");
+    this.sections.search.classList.add("--hide");
+    this.sections.content.classList.add("--hide");
+    this.sections.insert.classList.add("--hide");
+    this.sections.dialogMessage.classList.remove("--hide");
+  };
 
-  // clearFormData() {
+  clearFormData() {
 
-  //   let form = document.querySelector("#sale__insert__form__form");
-  //   form.id.value = "0";
-  //   form.name.value = "";
-  //   form.phone.value = "";
-  //   document.querySelector("#sale__insert__form__error-box__section").innerHTML = "";
-  // };
+    let form = document.querySelector("#sale__insert__form__form");
+    form.id.value = "0";
+    form.name.value = "";
+    form.phone.value = "";
+    document.querySelector("#sale__insert__form__error-box__section").innerHTML = "";
+  };
 
-  // validation() {
-  //   let form = document.querySelector("#sale__insert__form__form");
-  //   let name = form.name.value;
-  //   let phone = form.phone.value;
-  //   let errorsSection = document.querySelector("#sale__insert__form__error-box__section");
+  validation() {
+    let form = document.querySelector("#sale__insert__form__form");
+    let name = form.name.value;
+    let phone = form.phone.value;
+    let errorsSection = document.querySelector("#sale__insert__form__error-box__section");
 
-  //   errorsSection.innerHTML = "";
-  //   let errors = [];
+    errorsSection.innerHTML = "";
+    let errors = [];
 
-  //   if (!name) {
-  //     errors.push("Nome em branco");
-  //   }
+    if (!name) {
+      errors.push("Nome em branco");
+    }
 
-  //   if (!phone) {
-  //     errors.push("Telefone em branco");
-  //   }
+    if (!phone) {
+      errors.push("Telefone em branco");
+    }
 
-  //   if (errors.length !== 0) {
-  //     for (const error of errors) {
+    if (errors.length !== 0) {
+      for (const error of errors) {
 
-  //       let span = document.createElement("span");
-  //       span.classList.add("sale__insert__form__error-box__error");
-  //       span.innerHTML = error;
+        let span = document.createElement("span");
+        span.classList.add("sale__insert__form__error-box__error");
+        span.innerHTML = error;
 
-  //       errorsSection.appendChild(span);
-  //     }
-  //     return;
-  //   }
+        errorsSection.appendChild(span);
+      }
+      return;
+    }
 
-  //   return true;
+    return true;
 
-  // };
+  };
 
-  // loadCards() {
-  //   (async () => {
+  loadCards() {
+    (async () => {
+      const res = await fetch("./server/sale.php?type=selectAll", {
+        method: "GET",
+        headers: {
+          contentType: "application/json"
+        }
+      });
 
-  //     const res = await fetch("./server/client.php?type=selectAll", {
-  //       method: "GET",
-  //       headers: {
-  //         contentType: "application/json"
-  //       }
-  //     });
-  //     const data = await res.json();
+      const data = await res.json();
 
-  //     this.sections.content.innerHTML = "";
+      this.sections.content.innerHTML = "";
 
-  //     for (const client of data) {
-  //       let card = this.buildCard(client.id, client.name, client.phone);
-  //       this.sections.content.innerHTML += card;
-  //     }
+      for (const client of data) {
+        let card = this.buildCard(client.id, client.name, client.phone);
+        this.sections.content.innerHTML += card;
+      }
 
-  //     this.delete();
-  //     this.update();
-  //     this.showCards();
+      this.delete();
+      this.update();
+      this.showCards();
 
-  //   })();
-  // };
+    })();
+  };
 
-  // delete() {
-  //   let formsOfDelete = document.querySelectorAll("form[data-id=sale__content__card__actions-box__delete-form]");
+  delete() {
+    let formsOfDelete = document.querySelectorAll("form[data-id=sale__content__card__actions-box__delete-form]");
 
-  //   for (let form of formsOfDelete) {
+    for (let form of formsOfDelete) {
 
-  //     form.onsubmit = (e) => {
-  //       e.preventDefault();
-  //       const formData = new FormData(e.target);
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
 
-  //       const action = async () => {
-  //         await fetch("./server/client.php", {
-  //           method: "POST",
-  //           header: {
-  //             contentType: "application/json"
-  //           },
-  //           body: formData
-  //         });
+        const action = async () => {
+          await fetch("./server/sale.php", {
+            method: "POST",
+            header: {
+              contentType: "application/json"
+            },
+            body: formData
+          });
 
           
-  //         this.loadCards();
-  //       };
+          this.loadCards();
+        };
 
-  //       const message = "Deseja realmente excluir o cliente?";
-  //       this.showDialogMessage(action, message);
+        const message = "Deseja realmente excluir o cliente?";
+        this.showDialogMessage(action, message);
 
-  //     };
-  //   };
+      };
+    };
 
-  // };
+  };
 
-  // update() {
-  //   let formsOfUpdate = document.querySelectorAll("form[data-id=sale__content__card__actions-box__update-form]");
+  update() {
+    let formsOfUpdate = document.querySelectorAll("form[data-id=sale__content__card__actions-box__update-form]");
 
-  //   for (let form of formsOfUpdate) {
+    for (let form of formsOfUpdate) {
 
-  //     form.onsubmit = (e) => {
-  //       e.preventDefault();
+      form.onsubmit = (e) => {
+        e.preventDefault();
 
-  //       (async () => {
-  //         const res = await fetch(`./server/client.php?type=selectById&id=${e.target.id.value}`, {
-  //           method: "GET",
-  //           header: {
-  //             contentType: "application/json"
-  //           }
-  //         });
+        (async () => {
+          const res = await fetch(`./server/sale.php?type=selectById&id=${e.target.id.value}`, {
+            method: "GET",
+            header: {
+              contentType: "application/json"
+            }
+          });
 
-  //         const data = await res.json();
+          const data = await res.json();
 
-  //         let form = document.querySelector("#sale__insert__form__form");
-  //         form.name.value = data.name;
-  //         form.phone.value = data.phone;
-  //         form.id.value = data.id;
+          let form = document.querySelector("#sale__insert__form__form");
+          form.name.value = data.name;
+          form.phone.value = data.phone;
+          form.id.value = data.id;
 
-  //         this.showForm();
+          this.showForm();
 
-  //       })();
+        })();
 
-  //     };
-  //   };
-  // };
+      };
+    };
+  };
 
-  // search() {
+  search() {
 
-  //   let form = document.querySelector("#sale__search__form__form");
+    let form = document.querySelector("#sale__search__form__form");
 
-  //   form.onsubmit = (e) => {
-  //     e.preventDefault();
+    form.onsubmit = (e) => {
+      e.preventDefault();
 
-  //     (async () => {
+      (async () => {
 
-  //       const res = await fetch(`./server/client.php?type=search&id=${e.target.id.value}&name=${e.target.name.value}&phone=${e.target.phone.value}`, {
-  //         method: "GET",
-  //         headers: {
-  //           contentType: "application/json"
-  //         }
-  //       });
+        const res = await fetch(`./server/sale.php?type=search&id=${e.target.id.value}&name=${e.target.name.value}&phone=${e.target.phone.value}`, {
+          method: "GET",
+          headers: {
+            contentType: "application/json"
+          }
+        });
   
-  //       const data = await res.json();
+        const data = await res.json();
         
-  //       this.sections.content.innerHTML = "";
+        this.sections.content.innerHTML = "";
         
-  //       for (const client of data) {
-  //         let card = this.buildCard(client.id, client.name, client.phone);
-  //         this.sections.content.innerHTML += card;
-  //       }
+        for (const client of data) {
+          let card = this.buildCard(client.id, client.name, client.phone);
+          this.sections.content.innerHTML += card;
+        }
   
-  //       this.delete();
-  //       this.update();
-  //       this.showCards();
+        this.delete();
+        this.update();
+        this.showCards();
   
-  //     })();
-  //   };
-  // };
+      })();
+    };
+  };
 
 }
 
