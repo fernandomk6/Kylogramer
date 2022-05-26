@@ -1,2 +1,2 @@
 # To do
-- Atualizar eventos JS sale
+- Concluir metodo loadCards sale js
