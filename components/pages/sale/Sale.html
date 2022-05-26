@@ -93,10 +93,16 @@
       </div>
     </div>
   </section>
-  <section class="sale__insert --hide">
+  <section id="sale__insert__section" class="sale__insert --hide">
     <div class="sale__insert__title-box">
       <h2 class="sale__insert__title-box__title">Venda</h2>
     </div>
+    <form id="sale__insert__fomr-sale" class="--hide">
+      <input type="number" name="id">
+      <input type="date" name="date">
+      <input type="number" step="0.01" min="0" name="total">
+      <input type="number" name="client_id">
+    </form>
     <form id="sale__insert__form-section__client" class="sale__insert__form-section">
       <div class="sale__insert__form-section__header">
         <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--big">
@@ -111,6 +117,7 @@
     </form>
     <form id="sale__insert__form-section__product" class="sale__insert__form-section sale__insert__form-section--bordered">
       <div class="sale__insert__form-section__header">
+        <input type="hidden" name="id">
         <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--big">
           <span class="sale__insert__form-section__header__box__title">Produto</span>
           <input type="text" name="name" class="sale__insert__form-section__header__box__input">
@@ -123,15 +130,21 @@
           <span class="sale__insert__form-section__header__box__title">Unitário</span>
           <input type="number" min="0" step="0.01" name="unitary" class="sale__insert__form-section__header__box__input">
         </label>
+        <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--little">
+          <span class="sale__insert__form-section__header__box__title">Total</span>
+          <input type="number" min="0" step="0.01" name="total" class="sale__insert__form-section__header__box__input">
+        </label>
         <label class="sale__insert__form-section__header__box">
           <button type="submit" class="sale__insert__form-section__header__box__submit">
             Adicionar
           </button>
         </label>
       </div>
-      <div class="sale__insert__form-section__body">
+      <div id="sale__insert__form-section__body__product" class="sale__insert__form-section__body">
         <div class="sale__insert__form-section__body__item">
-          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">Nome do Produto Aqui</div>
+          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">
+            Nome do Produto Aqui
+          </div>
           <div class="sale__insert__form-section__body__item__data">
             <span>KG </span>
             <span>15,99</span>
@@ -147,7 +160,9 @@
           </div>
         </div>
         <div class="sale__insert__form-section__body__item">
-          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">Outro produto</div>
+          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">
+            Outro produto
+          </div>
           <div class="sale__insert__form-section__body__item__data">
             <span>KG </span>
             <span>15,99</span>
@@ -180,7 +195,7 @@
           </button>
         </label>
       </div>
-      <div class="sale__insert__form-section__body">
+      <div id="sale__insert__form-section__body__payment" class="sale__insert__form-section__body">
         <div class="sale__insert__form-section__body__item">
           <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">Pix</div>
           <div class="sale__insert__form-section__body__item__data">
