@@ -55,10 +55,10 @@
           </p>
           <p class="sale__content__card__product-box__product__quantity-box">
             <span>${productQuantity}</span>
-            <span>KG</span>
+            <span>KG </span>
           </p>
           <p class="sale__content__card__product-box__product__price-box">
-            <span>R$</span>
+            <span>R$ </span>
             <span>${productPrice}</span>
           </p>
         </div>
@@ -69,7 +69,7 @@
             ${paymentName}
           </p>
           <p class="sale__content__card__payment-box__payment__tatal-box">
-            <span>R$</span>
+            <span>R$ </span>
             <span>${paymentTotal}</span>
           </p>
         </div>
@@ -93,43 +93,33 @@
       </div>
     </div>
   </section>
-
-
-
-
-
-
-
-
-
-
   <section class="sale__insert">
     <div class="sale__insert__title-box">
       <h2 class="sale__insert__title-box__title">Venda</h2>
     </div>
     <form id="sale__insert__form-section__client" class="sale__insert__form-section">
       <div class="sale__insert__form-section__header">
-        <label class="sale__insert__form-section__box">
-          <span class="sale__insert__form-section__box__title">Cliente</span>
-          <input type="text" name="name" class="sale__insert__form-section__box__input">
-        </label>
-        <label class="sale__insert__form-section__box">
-          <span class="sale__insert__form-section__box__title">Data</span>
-          <input type="date" name="date" class="sale__insert__form-section__box__input">
-        </label>
-      </div>
-    </form>
-    <form id="sale__insert__form-section__product" class="sale__insert__form-section">
-      <div class="sale__insert__form-section__header">
-        <label class="sale__insert__form-section__header__box">
-          <span class="sale__insert__form-section__header__box__title">Produto</span>
+        <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--big">
+          <span class="sale__insert__form-section__header__box__title">Cliente</span>
           <input type="text" name="name" class="sale__insert__form-section__header__box__input">
         </label>
         <label class="sale__insert__form-section__header__box">
+          <span class="sale__insert__form-section__header__box__title">Data</span>
+          <input type="date" name="date" class="sale__insert__form-section__header__box__input">
+        </label>
+      </div>
+    </form>
+    <form id="sale__insert__form-section__product" class="sale__insert__form-section sale__insert__form-section--bordered">
+      <div class="sale__insert__form-section__header">
+        <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--big">
+          <span class="sale__insert__form-section__header__box__title">Produto</span>
+          <input type="text" name="name" class="sale__insert__form-section__header__box__input">
+        </label>
+        <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--little">
           <span class="sale__insert__form-section__header__box__title">KG</span>
           <input type="number" min="0" step="0.01" name="kilogram" class="sale__insert__form-section__header__box__input">
         </label>
-        <label class="sale__insert__form-section__header__box">
+        <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--little">
           <span class="sale__insert__form-section__header__box__title">Unitário</span>
           <input type="number" min="0" step="0.01" name="unitary" class="sale__insert__form-section__header__box__input">
         </label>
@@ -141,26 +131,46 @@
       </div>
       <div class="sale__insert__form-section__body">
         <div class="sale__insert__form-section__body__item">
-          <div class="sale__insert__form-section__body__item__data">Saco</div>
-          <div class="sale__insert__form-section__body__item__data">Saco</div>
-          <div class="sale__insert__form-section__body__item__data">Saco</div>
-          <div class="sale__insert__form-section__body__item__data">X</div>
+          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">Nome do Produto Aqui</div>
+          <div class="sale__insert__form-section__body__item__data">
+            <span>KG </span>
+            <span>15,99</span>
+          </div>
+          <div class="sale__insert__form-section__body__item__data">
+            <span>R$ </span>
+            <span>95,66</span>
+          </div>
+          <div class="sale__insert__form-section__body__item__data">
+            <span class="material-symbols-outlined material-symbols-outlined--pointer">
+              close
+            </span>
+          </div>
         </div>
         <div class="sale__insert__form-section__body__item">
-          <div class="sale__insert__form-section__body__item__data">Saco</div>
-          <div class="sale__insert__form-section__body__item__data">Saco</div>
-          <div class="sale__insert__form-section__body__item__data">Saco</div>
-          <div class="sale__insert__form-section__body__item__data">X</div>
+          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">Outro produto</div>
+          <div class="sale__insert__form-section__body__item__data">
+            <span>KG </span>
+            <span>15,99</span>
+          </div>
+          <div class="sale__insert__form-section__body__item__data">
+            <span>R$ </span>
+            <span>15,99</span>
+          </div>
+          <div class="sale__insert__form-section__body__item__data">
+            <span class="material-symbols-outlined material-symbols-outlined--pointer">
+              close
+            </span>
+          </div>
         </div>
       </div>
     </form>
-    <form id="sale__insert__form-section__payment" class="sale__insert__form-section">
+    <form id="sale__insert__form-section__payment" class="sale__insert__form-section sale__insert__form-section--bordered">
       <div class="sale__insert__form-section__header">
-        <label class="sale__insert__form-section__header__box">
+        <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--big">
           <span class="sale__insert__form-section__header__box__title">Forma de Pagamento</span>
           <input type="text" name="name" class="sale__insert__form-section__header__box__input">
         </label>
-        <label class="sale__insert__form-section__header__box">
+        <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--little">
           <span class="sale__insert__form-section__header__box__title">Total</span>
           <input type="number" min="0" step="0.01" name="total" class="sale__insert__form-section__header__box__input">
         </label>
@@ -172,20 +182,28 @@
       </div>
       <div class="sale__insert__form-section__body">
         <div class="sale__insert__form-section__body__item">
-          <div class="sale__insert__form-section__body__item__data">Pix</div>
+          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">Pix</div>
           <div class="sale__insert__form-section__body__item__data">
-            <span>R$</span>
+            <span>R$ </span>
             <span>33,55</span>
           </div>
-          <div class="sale__insert__form-section__body__item__data">X</div>
+          <div class="sale__insert__form-section__body__item__data">
+            <span class="material-symbols-outlined material-symbols-outlined--pointer">
+              close
+            </span>
+          </div>
         </div>
         <div class="sale__insert__form-section__body__item">
-          <div class="sale__insert__form-section__body__item__data">Credito</div>
+          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">Credito</div>
           <div class="sale__insert__form-section__body__item__data">
-            <span>R$</span>
+            <span>R$ </span>
             <span>39,55</span>
           </div>
-          <div class="sale__insert__form-section__body__item__data">X</div>
+          <div class="sale__insert__form-section__body__item__data">
+            <span class="material-symbols-outlined material-symbols-outlined--pointer">
+              close
+            </span>
+          </div>
         </div>
       </div>
     </form>
@@ -206,16 +224,6 @@
       </button>
     </div>
   </section>
-
-
-
-
-
-
-
-
-
-
   <section id="sale__dialog-message__section" class="sale__dialog-message --hide">
     <div class="sale__dialog-message__title">
       <span class="material-symbols-outlined sale__dialog-message__title__icon">

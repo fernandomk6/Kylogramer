@@ -174,6 +174,8 @@
   display: flex;
   align-items: center;
   padding: 20px 40px;
+  border-bottom: 1px solid var(--cl-white-2);
+  margin-bottom: 10px;
 }
 
 .sale__insert__title-box__title {
@@ -181,16 +183,150 @@
   color: var(--cl-black-2);
 }
 
-.sale__insert__form {
+.sale__insert__form-section {
+  margin: 0 30px;
+  margin-bottom: 20px;
+}
+
+.sale__insert__form-section--bordered {
+  border-left: 2px solid green;
+}
+
+.sale__insert__form-section__header {
+  padding: 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.sale__insert__form-section__header__box {
+  margin: 0 10px 5px 0;
   display: flex;
   flex-direction: column;
 }
 
-/* form sections */
+.sale__insert__form-section__header__box--big {
+  flex: 1 1 auto;
+}
+
+.sale__insert__form-section__header__box--little {
+  max-width: 80px;
+}
+
+.sale__insert__form-section__header__box__title {
+  font-weight: bold;
+  font-size: .8rem;
+  color: var(--cl-black-0);
+}
+
+.sale__insert__form-section__header__box__input {
+  border: 1px solid var(--cl-white-2);
+  outline: none;
+  padding: 5px;
+  transition: .3s;
+}
+
+.sale__insert__form-section__header__box__input:focus {
+  border: 1px solid var(--cl-green-0);
+}
+
+.sale__insert__form-section__header__box__input:hover {
+  border: 1px solid var(--cl-green-0);
+}
+
+.sale__insert__form-section__header__box__submit {
+  color: var(--cl-green-0);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.sale__insert__form-section__body {
+  background-color: var(--cl-white-1);
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sale__insert__form-section__body__item {
+  display: flex;
+  align-items: center;
+}
+
+.sale__insert__form-section__body__item__data {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.sale__insert__form-section__body__item__data--big {
+  flex: 1 1 auto;
+}
+
+.material-symbols-outlined.material-symbols-outlined--pointer {
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.sale__insert__form-section__total-box {
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sale__insert__form-section__total-box__content {
+  display: flex;
+}
+
+.sale__insert__form-section__total-box__content__text {
+  font-weight: bold;
+  font-size: 2rem;
+}
 
 
 
-.sale__insert__form__submit-box {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sale__insert__form-section__submit-box {
   margin-top: 20px;
   padding: 20px 0;
   display: flex;
@@ -199,8 +335,8 @@
   border-top: 1px solid var(--cl-white-2);
 }
 
-.sale__insert__form__submit-box__submit,
-.sale__insert__form__submit-box__cancel {
+.sale__insert__form-section__submit-box__submit,
+.sale__insert__form-section__submit-box__cancel {
   color: var(--cl-green-0);
   background-color: transparent;
   border: none;
@@ -208,14 +344,14 @@
   cursor: pointer;
 }
 
-.sale__insert__form__error-box {
+.sale__insert__form-section__error-box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0 40px;
 }
 
-.sale__insert__form__error-box__error {
+.sale__insert__form-section__error-box__error {
   color: var(--cl-red-0);
   font-size: .8rem;
 }
