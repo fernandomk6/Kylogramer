@@ -1,2 +1,2 @@
 # To do
-- concluir metodo form sale js
+- concluir metodo form evento onsubmit sale js
