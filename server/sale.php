@@ -127,7 +127,7 @@ if (isset($_GET) && !empty($_GET)) {
     $sql = "SELECT sale.id, sale.date, sale.client_id, client.name, client.phone, sale.date, sale.total
             FROM sale, client
             WHERE sale.client_id = client.id
-            AND sale.id = :id
+            AND sale.id = :id 
             AND sale.deleted = 0";
 
     $stmt = $conn->prepare($sql);
@@ -168,9 +168,9 @@ if (isset($_GET) && !empty($_GET)) {
               sale.id = sale_payment.sale_id 
             AND 
               sale_payment.payment_id = payment.id
-            AND
-              sale.id = :id
             AND 
+              sale.id = :id
+            AND
               sale.deleted = 0";
 
     $stmt = $conn->prepare($sql);
@@ -210,7 +210,6 @@ if (isset($_GET) && !empty($_GET)) {
 
     echo json_encode($allSales);
     exit();
-    
   }
 
   if ($_GET['type'] == "search") {
@@ -252,6 +251,52 @@ if (isset($_GET) && !empty($_GET)) {
       echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
       exit();
     }
+
+  }
+
+  if ($_GET['type'] == "insert") {
+
+    $data = [
+      "sale_id" => "",
+      "clients" => [],
+      "products" => [],
+      "payments" => []
+    ];
+
+    // inserindo venda
+    $date = date("Y/m/d");
+    $sql = "INSERT INTO `sale`(`date`) VALUES (:date);";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':date', $date);
+    $stmt->execute();
+
+    // pegando o id da ultima venda inserida
+    $sql = "SELECT id FROM sale ORDER BY id DESC LIMIT 1";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data["sale_id"] = $stmt->fetchAll(PDO::FETCH_ASSOC)[0]["id"];
+
+
+    // pegando todos os clientes
+    $sql = "SELECT * FROM client";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data["clients"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // pegando todos os produtos
+    $sql = "SELECT * FROM product";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data["products"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // pegando todas as formas de pagamento
+    $sql = "SELECT * FROM payment";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data["payments"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    echo json_encode($data);
+    exit();
 
   }
 }

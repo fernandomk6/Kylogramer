@@ -101,13 +101,14 @@
       <input type="number" name="id">
       <input type="date" name="date">
       <input type="number" step="0.01" min="0" name="total">
-      <input type="number" name="client_id">
     </form>
     <form id="sale__insert__form-section__client" class="sale__insert__form-section">
       <div class="sale__insert__form-section__header">
         <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--big">
           <span class="sale__insert__form-section__header__box__title">Cliente</span>
-          <input type="text" name="name" class="sale__insert__form-section__header__box__input">
+          <select id="sale__insert__form-section__header__box__input__select-client" type="text" name="id" class="sale__insert__form-section__header__box__input">
+            
+          </select>
         </label>
         <label class="sale__insert__form-section__header__box">
           <span class="sale__insert__form-section__header__box__title">Data</span>
@@ -120,7 +121,8 @@
         <input type="hidden" name="id">
         <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--big">
           <span class="sale__insert__form-section__header__box__title">Produto</span>
-          <input type="text" name="name" class="sale__insert__form-section__header__box__input">
+          <select id="sale__insert__form-section__header__box__input__select-product" name="id" class="sale__insert__form-section__header__box__input">
+          </select>
         </label>
         <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--little">
           <span class="sale__insert__form-section__header__box__title">KG</span>
@@ -130,102 +132,40 @@
           <span class="sale__insert__form-section__header__box__title">Unitário</span>
           <input type="number" min="0" step="0.01" name="unitary" class="sale__insert__form-section__header__box__input">
         </label>
-        <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--little">
-          <span class="sale__insert__form-section__header__box__title">Total</span>
-          <input type="number" min="0" step="0.01" name="total" class="sale__insert__form-section__header__box__input">
-        </label>
+        <input type="hidden" name="total">
         <label class="sale__insert__form-section__header__box">
-          <button type="submit" class="sale__insert__form-section__header__box__submit">
+          <button id="sale__insert__form-section__header__box__submit__add-product" type="button" class="sale__insert__form-section__header__box__submit">
             Adicionar
           </button>
         </label>
       </div>
       <div id="sale__insert__form-section__body__product" class="sale__insert__form-section__body">
-        <div class="sale__insert__form-section__body__item">
-          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">
-            Nome do Produto Aqui
-          </div>
-          <div class="sale__insert__form-section__body__item__data">
-            <span>KG </span>
-            <span>15,99</span>
-          </div>
-          <div class="sale__insert__form-section__body__item__data">
-            <span>R$ </span>
-            <span>95,66</span>
-          </div>
-          <div class="sale__insert__form-section__body__item__data">
-            <span class="material-symbols-outlined material-symbols-outlined--pointer">
-              close
-            </span>
-          </div>
-        </div>
-        <div class="sale__insert__form-section__body__item">
-          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">
-            Outro produto
-          </div>
-          <div class="sale__insert__form-section__body__item__data">
-            <span>KG </span>
-            <span>15,99</span>
-          </div>
-          <div class="sale__insert__form-section__body__item__data">
-            <span>R$ </span>
-            <span>15,99</span>
-          </div>
-          <div class="sale__insert__form-section__body__item__data">
-            <span class="material-symbols-outlined material-symbols-outlined--pointer">
-              close
-            </span>
-          </div>
-        </div>
       </div>
     </form>
     <form id="sale__insert__form-section__payment" class="sale__insert__form-section sale__insert__form-section--bordered">
       <div class="sale__insert__form-section__header">
         <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--big">
           <span class="sale__insert__form-section__header__box__title">Forma de Pagamento</span>
-          <input type="text" name="name" class="sale__insert__form-section__header__box__input">
+          <select id="sale__insert__form-section__header__box__input__select-payment" type="text" name="id" class="sale__insert__form-section__header__box__input">
+          </select>
         </label>
         <label class="sale__insert__form-section__header__box sale__insert__form-section__header__box--little">
           <span class="sale__insert__form-section__header__box__title">Total</span>
           <input type="number" min="0" step="0.01" name="total" class="sale__insert__form-section__header__box__input">
         </label>
         <label class="sale__insert__form-section__header__box">
-          <button type="submit" class="sale__insert__form-section__header__box__submit">
+          <button id="sale__insert__form-section__header__box__submit__add-payment" type="button" class="sale__insert__form-section__header__box__submit">
             Adicionar
           </button>
         </label>
       </div>
       <div id="sale__insert__form-section__body__payment" class="sale__insert__form-section__body">
-        <div class="sale__insert__form-section__body__item">
-          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">Pix</div>
-          <div class="sale__insert__form-section__body__item__data">
-            <span>R$ </span>
-            <span>33,55</span>
-          </div>
-          <div class="sale__insert__form-section__body__item__data">
-            <span class="material-symbols-outlined material-symbols-outlined--pointer">
-              close
-            </span>
-          </div>
-        </div>
-        <div class="sale__insert__form-section__body__item">
-          <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">Credito</div>
-          <div class="sale__insert__form-section__body__item__data">
-            <span>R$ </span>
-            <span>39,55</span>
-          </div>
-          <div class="sale__insert__form-section__body__item__data">
-            <span class="material-symbols-outlined material-symbols-outlined--pointer">
-              close
-            </span>
-          </div>
-        </div>
       </div>
     </form>
     <div class="sale__insert__form-section__total-box">
       <div class="sale__insert__form-section__total-box__content">
         <span class="sale__insert__form-section__total-box__content__text">R$</span>
-        <span class="sale__insert__form-section__total-box__content__text">99,99</span>
+        <span id="sale__insert__form-section__total-box__content__text__total-sale" class="sale__insert__form-section__total-box__content__text">0,00</span>
       </div>
     </div>
     <div id="sale__insert__form-section__error-box" class="sale__insert__form-section__error-box">

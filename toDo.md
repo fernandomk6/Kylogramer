@@ -1,2 +1,2 @@
 # To do
-- Concluir metodo loadCards sale js
+- concluir metodo form sale js

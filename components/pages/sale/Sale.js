@@ -16,7 +16,37 @@ class Sale {
 
   buildCard(sale) {
 
-    // resolver o problema de loopar o sale.products e sale.payment pois são arrays
+    let productListStr = "";
+    let paymentListStr = "";
+
+    for (const product of sale.products) {
+      productListStr += `<div class="sale__content__card__product-box__product">
+                            <p class="sale__content__card__product-box__product__name-box">
+                              ${product.name}
+                            </p>
+                            <p class="sale__content__card__product-box__product__quantity-box">
+                              <span>${product.kilogram}</span>
+                              <span>KG </span>
+                            </p>
+                            <p class="sale__content__card__product-box__product__price-box">
+                              <span>R$ </span>
+                              <span>${product.unitary}</span>
+                            </p>
+                          </div>`;
+    }
+
+    for (const payment of sale.payments) {
+      paymentListStr += `<div class="sale__content__card__payment-box__payment">
+                          <p class="sale__content__card__payment-box__payment__name-box">
+                            ${payment.name}
+                          </p>
+                          <p class="sale__content__card__payment-box__payment__tatal-box">
+                            <span>R$ </span>
+                            <span>${payment.total}</span>
+                          </p>
+                        </div>`;
+    }
+
     let card = `<div class="sale__content__card">
                   <div class="sale__content__card__sale-box">
                     <div class="sale__content__card__sale-box__id-box">
@@ -37,30 +67,10 @@ class Sale {
                     </p>
                   </div>
                   <div class="sale__content__card__product-box">
-                    <div class="sale__content__card__product-box__product">
-                      <p class="sale__content__card__product-box__product__name-box">
-                        ${product.name}
-                      </p>
-                      <p class="sale__content__card__product-box__product__quantity-box">
-                        <span>${products.kilogram}</span>
-                        <span>KG </span>
-                      </p>
-                      <p class="sale__content__card__product-box__product__price-box">
-                        <span>R$ </span>
-                        <span>${product.unitary}</span>
-                      </p>
-                    </div>
+                    ${productListStr}
                   </div>
                   <div class="sale__content__card__payment-box">
-                    <div class="sale__content__card__payment-box__payment">
-                      <p class="sale__content__card__payment-box__payment__name-box">
-                        ${payment.name}
-                      </p>
-                      <p class="sale__content__card__payment-box__payment__tatal-box">
-                        <span>R$ </span>
-                        <span>${payment.total}</span>
-                      </p>
-                    </div>
+                    ${paymentListStr}
                   </div>
                   <div class="sale__content__card__total-box">
                     <p class="sale__content__card__total-box__content">
@@ -80,20 +90,124 @@ class Sale {
                     </form>
                   </div>
                 </div>`;
+
     return card;
   };
 
   form() {
     let formSale = document.querySelector("#sale__insert__fomr-sale");
-    let formClient = document.querySelector("#sale__insert__form-section__client");
     let formProduct = document.querySelector("#sale__insert__form-section__product");
     let formPayment = document.querySelector("#sale__insert__form-section__payment");
-    
     let btnOpenForm = document.querySelector("#sale__page-title__add__btn");
     let btnCancelForm = document.querySelector("#sale__insert__form-section__submit-box__cancel__btn");
-
+    let selectClient = document.querySelector("#sale__insert__form-section__header__box__input__select-client");
+    let selectProduct = document.querySelector("#sale__insert__form-section__header__box__input__select-product");
+    let selectPayment = document.querySelector("#sale__insert__form-section__header__box__input__select-payment");
+    let btnAddProduct = document.querySelector("#sale__insert__form-section__header__box__submit__add-product");
+    let btnAddPayment = document.querySelector("#sale__insert__form-section__header__box__submit__add-payment");
+    let productsContainer = document.querySelector("#sale__insert__form-section__body__product");
+    let paymentsContainer = document.querySelector("#sale__insert__form-section__body__payment");
+    let totalSale = document.querySelector("#sale__insert__form-section__total-box__content__text__total-sale");
+    
     btnOpenForm.onclick = () => {
-      this.showForm();
+      // inserir venda com data e retornar id
+      // retornar id da venda inserido, todos os clientes, produtos e pagamentos
+
+      const updateTotalSale = (value) => {
+        totalSale.innerHTML = parseFloat(totalSale.innerHTML) + parseFloat(value);
+        formSale.total.value = totalSale.innerHTML;
+      };
+
+      (async () => {
+        const res = await fetch('./server/sale.php?type=insert', {
+          method: "GET",
+          header: {
+            ContentType: "application/json"
+          },
+        });
+
+        const data = await res.json();
+        console.log(data);
+
+        // preencher todos os clientes, produtos e pagamentos disponiveis
+        for (const client of data.clients) {
+          let op = document.createElement("option");
+          op.value = client.id;
+          op.innerHTML = client.name;
+          selectClient.appendChild(op);
+        }
+
+        for (const product of data.products) {
+          let op = document.createElement("option");
+          op.value = product.id;
+          op.innerHTML = product.name;
+          selectProduct.appendChild(op);
+        }
+
+        for (const payment of data.payments) {
+          let op = document.createElement("option");
+          op.value = payment.id;
+          op.innerHTML = payment.name;
+          selectPayment.appendChild(op);
+        }
+
+        btnAddProduct.onclick = () => {
+
+          formProduct.total.value = parseFloat(formProduct.unitary.value) * parseFloat(formProduct.kilogram.value);
+          let productName = selectProduct.options[selectProduct.selectedIndex].text;
+
+          let product = {
+            id: selectProduct.value,
+            name: productName,
+            kilogram: formProduct.kilogram.value,
+            unitary: formProduct.unitary.value,
+            total: formProduct.total.value
+          };
+
+          let productItem = `<div data-id="product-${product.id}" data-value="product-${product.total}" class="sale__insert__form-section__body__item">
+                              <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">
+                                ${product.name}
+                              </div>
+                              <div class="sale__insert__form-section__body__item__data">
+                                <span>KG </span>
+                                <span>${product.kilogram}</span>
+                              </div>
+                              <div class="sale__insert__form-section__body__item__data">
+                                <span>R$ </span>
+                                <span>${product.total}</span>
+                              </div>
+                            </div>`;
+
+          productsContainer.innerHTML += productItem;
+          updateTotalSale(product.total);
+        };
+
+        btnAddPayment.onclick = () => {
+
+          let paymentName = selectPayment.options[selectPayment.selectedIndex].text;
+          
+          let payment = {
+            id: selectPayment.value,
+            name: paymentName,
+            total: formPayment.total.value
+          };
+
+          let paymentItem = `<div data-id="${payment.id}" data-name="payment" class="sale__insert__form-section__body__item">
+                              <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">
+                                ${payment.name}
+                              </div>
+                              <div class="sale__insert__form-section__body__item__data">
+                                <span>R$ </span>
+                                <span>${payment.total}</span>
+                              </div>
+                            </div>`;
+
+          paymentsContainer.innerHTML += paymentItem;
+        };
+
+        this.showForm();
+      })();
+
     };
 
     btnCancelForm.onclick = () => {
@@ -174,30 +288,40 @@ class Sale {
     let formClient = document.querySelector("#sale__insert__form-section__client");
     let formProduct = document.querySelector("#sale__insert__form-section__product");
     let formPayment = document.querySelector("#sale__insert__form-section__payment");
-    let formProductBody = document.querySelector("#sale__insert__form-section__body__product");
-    let formPaymentBody = document.querySelector("#sale__insert__form-section__body__payment");
 
-    formSale.id = "";
-    formSale.date = "";
-    formSale.total = "";
-    formSale.client_id = "";
+    // limpando as listas
+    let productsContainer = document.querySelector("#sale__insert__form-section__body__product");
+    let paymentsContainer = document.querySelector("#sale__insert__form-section__body__payment");
+    productsContainer.innerHTML = "";
+    paymentsContainer.innerHTML = "";
 
-    formClient.name = ""; // campo usado para fazer a busca pelo id do cliente pelo nome
-    formClient.date = ""; // depois jogar esse valor para o formSale.total
+    // limpando selects
+    let selectClient = document.querySelector("#sale__insert__form-section__header__box__input__select-client");
+    let selectProduct = document.querySelector("#sale__insert__form-section__header__box__input__select-product");
+    let selectPayment = document.querySelector("#sale__insert__form-section__header__box__input__select-payment");
+    selectClient.innerHTML = "";
+    selectProduct.innerHTML = "";
+    selectPayment.innerHTML = "";
 
-    formProduct.id = "";
-    formProduct.name = ""; // campo usado para fazer a busca
-    formProduct.kilogram = "";
-    formProduct.unitary = "";
-    formProduct.total = "";
-    formProductBody.innerHTML = ""; 
+    let totalSale = document.querySelector("#sale__insert__form-section__total-box__content__text__total-sale");
+    totalSale.innerHTML = "0,00";
 
-    formPayment.id = "";
-    formPayment.name = ""; // campo usado para fazer a pesquisa
-    formPayment.total = "";
-    formPaymentBody.innerHTML = "";
+    formSale.id.value = "";
+    formSale.date.value = "";
+    formSale.total.value = "";
 
-    document.querySelector("#sale__insert__form__error-box__section").innerHTML = "";
+    formClient.id.value = ""; 
+    formClient.date.value = "";
+
+    formProduct.id.value = "";
+    formProduct.kilogram.value = "";
+    formProduct.unitary.value = "";
+    formProduct.total.value = "";
+
+    formPayment.id.value = "";
+    formPayment.total.value = "";
+
+    document.querySelector("#sale__insert__form-section__error-box").innerHTML = "";
   };
 
   validation() {
@@ -258,6 +382,8 @@ class Sale {
       }
 
       this.delete();
+
+
       this.update();
       this.showCards();
 
@@ -315,20 +441,8 @@ class Sale {
           });
 
           const data = await res.json();
-          // um array, com 2 array dentro, os 2 arrays de dentro sao objeto
-          // [ products -> [{product 1}, {product 2}], payments -> [{payment 1}, {payment 2}] ]
-
-          // desestrututando os dados da venda
-          const sale = {
-            id: data[0].sale__id,
-            clientId: date[0].sale__client_id,
-            clientName: date[0].sale__client_name,
-            date: data[0].sale__date,
-            total: data[0].sale__total
-          };
-
-          const products = data[0];
-          const payments = data[1];
+          const sale = data[0];
+          console.log("selec id", sale);
 
           // pegando os formularios e preenchendo com os dados do cliente que foi clicado em editar
           let formSale = document.querySelector("#sale__insert__fomr-sale");
@@ -336,23 +450,23 @@ class Sale {
           let formProduct = document.querySelector("#sale__insert__form-section__product");
           let formPayment = document.querySelector("#sale__insert__form-section__payment");
       
-          formSale.id = sale.id;
-          formSale.date = sale.date;
-          formSale.total = sale.total;
-          formSale.client_id = sale.clientId;
+          formSale.id.value = sale.id;
+          formSale.date.value = sale.date;
+          formSale.total.value = sale.total;
+          formSale.client_id.value = sale.client_id;
       
-          formClient.name = sale.clientName;
-          formClient.date = sale.date;
+          formClient.name.value = sale.client_name;
+          formClient.date.value = sale.date;
       
-          formProduct.id = products.product__id;
-          formProduct.name = products.product__name;
-          formProduct.kilogram = products.product__kilogram;
-          formProduct.unitary = products.product__unitary;
-          formProduct.total = products.product__total;
+          formProduct.id.value = sale.products.product_id;
+          formProduct.name.value = sale.products.name;
+          formProduct.kilogram.value = sale.products.kilogram;
+          formProduct.unitary.value = sale.products.unitary;
+          formProduct.total.value = sale.products.total;
 
-          formPayment.id = payments.payment__id;
-          formPayment.name = payments.payment__name;
-          formPayment.total = payments.payment__total;
+          formPayment.id.value = sale.payments.payment_id;
+          formPayment.name.value = sale.payments.name;
+          formPayment.total.value = sale.payments.total;
 
           this.showForm();
         })();
