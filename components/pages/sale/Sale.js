@@ -14,7 +14,9 @@ class Sale {
     dialogMessage: document.querySelector("#sale__dialog-message__section")
   };
 
-  buildCard(sale, clients, payments) {
+  buildCard(sale) {
+
+    // resolver o problema de loopar o sale.products e sale.payment pois são arrays
     let card = `<div class="sale__content__card">
                   <div class="sale__content__card__sale-box">
                     <div class="sale__content__card__sale-box__id-box">
@@ -28,35 +30,35 @@ class Sale {
                   </div>
                   <div class="sale__content__card__sale-box">
                     <p class="sale__content__card__sale-box__name-box">
-                      ${clients.client.name}
+                      ${sale.client_name}
                     </p>
                     <p class="sale__content__card__sale-box__phone-box">
-                      ${clients.client.phone}
+                      ${sale.client_phone}
                     </p>
                   </div>
                   <div class="sale__content__card__product-box">
                     <div class="sale__content__card__product-box__product">
                       <p class="sale__content__card__product-box__product__name-box">
-                        ${products.product.name}
+                        ${product.name}
                       </p>
                       <p class="sale__content__card__product-box__product__quantity-box">
-                        <span>${products.product.quantity}</span>
+                        <span>${products.kilogram}</span>
                         <span>KG </span>
                       </p>
                       <p class="sale__content__card__product-box__product__price-box">
                         <span>R$ </span>
-                        <span>${products.product.price}</span>
+                        <span>${product.unitary}</span>
                       </p>
                     </div>
                   </div>
                   <div class="sale__content__card__payment-box">
                     <div class="sale__content__card__payment-box__payment">
                       <p class="sale__content__card__payment-box__payment__name-box">
-                        ${payments.payment.name}
+                        ${payment.name}
                       </p>
                       <p class="sale__content__card__payment-box__payment__tatal-box">
                         <span>R$ </span>
-                        <span>${payments.payment.total}</span>
+                        <span>${payment.total}</span>
                       </p>
                     </div>
                   </div>
@@ -242,14 +244,14 @@ class Sale {
 
       // data com todas as vendas
       const data = await res.json();
-      console.log("aqui", data);
+      console.log(data);
 
       // limpando todos os cards
       this.sections.content.innerHTML = "";
 
       // iterando as vendas e buildando o card
-      for (const client of data) {
-        let card = this.buildCard(client.id, client.name, client.phone);
+      for (const sale of data) {
+        let card = this.buildCard(sale);
 
         // inserindo o card dentro do container dos cards
         this.sections.content.innerHTML += card;

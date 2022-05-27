@@ -42,7 +42,7 @@ if (isset($_GET) && !empty($_GET)) {
 
   if ($_GET['type'] == "selectAll") {
 
-    $sql = "SELECT sale.id, sale.client_id, client.name, sale.date, sale.total
+    $sql = "SELECT sale.id, sale.date, sale.client_id, client.name, client.phone, sale.date, sale.total
             FROM sale, client
             WHERE sale.client_id = client.id 
             AND sale.deleted = 0";
@@ -94,8 +94,10 @@ if (isset($_GET) && !empty($_GET)) {
 
       $actualSale = [
         "id" => $sale['id'],
+        "date" => $sale['date'],
         "client_id" => $sale['client_id'],
         "client_name" => $sale['name'],
+        "client_phone" => $sale['phone'],
         "total" => $sale['total'],
         "products" => [],
         "payments" => [],
@@ -122,7 +124,7 @@ if (isset($_GET) && !empty($_GET)) {
 
   if ($_GET['type'] == "selectById") {
 
-    $sql = "SELECT sale.id, sale.client_id, client.name, sale.date, sale.total
+    $sql = "SELECT sale.id, sale.date, sale.client_id, client.name, client.phone, sale.date, sale.total
             FROM sale, client
             WHERE sale.client_id = client.id
             AND sale.id = :id
@@ -182,8 +184,10 @@ if (isset($_GET) && !empty($_GET)) {
 
       $actualSale = [
         "id" => $sale['id'],
+        "date" => $sale['date'],
         "client_id" => $sale['client_id'],
         "client_name" => $sale['name'],
+        "client_phone" => $sale['phone'],
         "total" => $sale['total'],
         "products" => [],
         "payments" => [],
