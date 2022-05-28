@@ -98,15 +98,20 @@ class Sale {
     let formSale = document.querySelector("#sale__insert__fomr-sale");
     let formProduct = document.querySelector("#sale__insert__form-section__product");
     let formPayment = document.querySelector("#sale__insert__form-section__payment");
+
     let btnOpenForm = document.querySelector("#sale__page-title__add__btn");
     let btnCancelForm = document.querySelector("#sale__insert__form-section__submit-box__cancel__btn");
+
     let selectClient = document.querySelector("#sale__insert__form-section__header__box__input__select-client");
     let selectProduct = document.querySelector("#sale__insert__form-section__header__box__input__select-product");
     let selectPayment = document.querySelector("#sale__insert__form-section__header__box__input__select-payment");
+
     let btnAddProduct = document.querySelector("#sale__insert__form-section__header__box__submit__add-product");
     let btnAddPayment = document.querySelector("#sale__insert__form-section__header__box__submit__add-payment");
-    let productsContainer = document.querySelector("#sale__insert__form-section__body__product");
-    let paymentsContainer = document.querySelector("#sale__insert__form-section__body__payment");
+
+    let productList = document.querySelector("#sale__insert__form-section__body__product");
+    let paymentList = document.querySelector("#sale__insert__form-section__body__payment");
+
     let totalSale = document.querySelector("#sale__insert__form-section__total-box__content__text__total-sale");
     
     btnOpenForm.onclick = () => {
@@ -114,8 +119,8 @@ class Sale {
       // retornar id da venda inserido, todos os clientes, produtos e pagamentos
 
       const updateTotalSale = (value) => {
-        totalSale.innerHTML = parseFloat(totalSale.innerHTML) + parseFloat(value);
-        formSale.total.value = totalSale.innerHTML;
+        totalSale.innerHTML = parseFloat(parseFloat(totalSale.innerHTML) + parseFloat(value)).toFixed(2);
+        formSale.total.value = parseFloat(totalSale.innerHTML).toFixed(2);
       };
 
       (async () => {
@@ -164,7 +169,7 @@ class Sale {
             total: formProduct.total.value
           };
 
-          let productItem = `<div data-id="product-${product.id}" data-value="product-${product.total}" class="sale__insert__form-section__body__item">
+          let productItem = `<li data-id="${product.id}" data-total="${product.total}" class="sale__insert__form-section__body__item">
                               <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">
                                 ${product.name}
                               </div>
@@ -176,10 +181,27 @@ class Sale {
                                 <span>R$ </span>
                                 <span>${product.total}</span>
                               </div>
-                            </div>`;
+                              <div class="sale__insert__form-section__body__item__data">
+                                <span data-id="${product.id}" class="material-symbols-outlined material-symbols-outlined--pointer">
+                                  close
+                                </span>
+                              </div>
+                            </li>`;
 
-          productsContainer.innerHTML += productItem;
+          productList.innerHTML += productItem;
           updateTotalSale(product.total);
+
+          let btnsRemoveProduct = productList.querySelectorAll(`li[data-id] span[data-id]`);
+
+          for (let btnRemoveProduct of btnsRemoveProduct) {
+            btnRemoveProduct.onclick = () => {
+              let id = btnRemoveProduct.dataset.id;
+              let productItem = productList.querySelector(`li[data-id="${id}"]`);
+              updateTotalSale(parseFloat(productItem.dataset.total) - parseFloat(productItem.dataset.total) - parseFloat(productItem.dataset.total));
+              productItem.remove();
+            }; 
+          }
+
         };
 
         btnAddPayment.onclick = () => {
@@ -202,7 +224,7 @@ class Sale {
                               </div>
                             </div>`;
 
-          paymentsContainer.innerHTML += paymentItem;
+          paymentList.innerHTML += paymentItem;
         };
 
         this.showForm();
@@ -290,10 +312,10 @@ class Sale {
     let formPayment = document.querySelector("#sale__insert__form-section__payment");
 
     // limpando as listas
-    let productsContainer = document.querySelector("#sale__insert__form-section__body__product");
-    let paymentsContainer = document.querySelector("#sale__insert__form-section__body__payment");
-    productsContainer.innerHTML = "";
-    paymentsContainer.innerHTML = "";
+    let productList = document.querySelector("#sale__insert__form-section__body__product");
+    let paymentList = document.querySelector("#sale__insert__form-section__body__payment");
+    productList.innerHTML = "";
+    paymentList.innerHTML = "";
 
     // limpando selects
     let selectClient = document.querySelector("#sale__insert__form-section__header__box__input__select-client");
