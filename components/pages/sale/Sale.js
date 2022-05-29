@@ -95,12 +95,13 @@ class Sale {
   };
 
   form() {
-    let formSale = document.querySelector("#sale__insert__fomr-sale");
+    let formSale = document.querySelector("#sale__insert__form-sale");
     let formProduct = document.querySelector("#sale__insert__form-section__product");
     let formPayment = document.querySelector("#sale__insert__form-section__payment");
 
     let btnOpenForm = document.querySelector("#sale__page-title__add__btn");
     let btnCancelForm = document.querySelector("#sale__insert__form-section__submit-box__cancel__btn");
+    let btnSubmitForm = document.querySelector("#sale__insert__form-section__submit-box__submit__btn");
 
     let selectClient = document.querySelector("#sale__insert__form-section__header__box__input__select-client");
     let selectProduct = document.querySelector("#sale__insert__form-section__header__box__input__select-product");
@@ -132,7 +133,9 @@ class Sale {
         });
 
         const data = await res.json();
-        console.log(data);
+
+        // setando id da venda
+        formSale.id.value = data.sale_id;
 
         // preencher todos os clientes, produtos e pagamentos disponiveis
         for (const client of data.clients) {
@@ -237,14 +240,18 @@ class Sale {
       this.showCards();
     };
 
-    form.onsubmit = (e) => {
-      e.preventDefault();
+    btnSubmitForm.onclick = () => {
 
       if (this.validation()) {
+
+        // criar dados para inserção
         let formData = new FormData(form);
         formData.append("type", "insert");
+
+        // limpar dados do form
         this.clearFormData();
 
+        // enviar requisição para inserir a venda
         (async () => {
           await fetch('./server/sale.php', {
             method: "POST",
@@ -254,6 +261,7 @@ class Sale {
             body: formData
           });
 
+          // atualizar todos os cards
           this.loadCards();
 
         })();
@@ -306,7 +314,7 @@ class Sale {
   };
 
   clearFormData() {
-    let formSale = document.querySelector("#sale__insert__fomr-sale");
+    let formSale = document.querySelector("#sale__insert__form-sale");
     let formClient = document.querySelector("#sale__insert__form-section__client");
     let formProduct = document.querySelector("#sale__insert__form-section__product");
     let formPayment = document.querySelector("#sale__insert__form-section__payment");
@@ -347,27 +355,51 @@ class Sale {
   };
 
   validation() {
-    let form = document.querySelector("#sale__insert__form__form");
-    let name = form.name.value;
-    let phone = form.phone.value;
-    let errorsSection = document.querySelector("#sale__insert__form__error-box__section");
+    let formSale = document.querySelector("#sale__insert__form-sale");
+    let formClient = document.querySelector("#sale__insert__form-section__client");
+
+    // listas
+    let productList = document.querySelector("#sale__insert__form-section__body__product");
+    let paymentList = document.querySelector("#sale__insert__form-section__body__payment");
+
+    // total string
+    let totalSale = document.querySelector("#sale__insert__form-section__total-box__content__text__total-sale");
+
+    // box de erro
+    let errorsSection = document.querySelector("#sale__insert__form-section__error-box");
 
     errorsSection.innerHTML = "";
     let errors = [];
 
-    if (!name) {
-      errors.push("Nome em branco");
+    if (!formSale.id.value) {
+      errors.push("Id venda não encontrado");
     }
 
-    if (!phone) {
-      errors.push("Telefone em branco");
+    if (!formSale.date.value) {
+      errors.push("Total venda em branco");
+    }
+
+    if (!formClient.id.value) {
+      errors.push("Cliente em branco");
+    }
+
+    if (productList.innerHTML == "") {
+      errors.push("Nenhum produto adicionado");
+    }
+
+    if (totalSale.innerHTML == "0,00") {
+      errors.push("Total invalido");
+    }
+
+    if (paymentList.innerHTML == "") {
+      errors.push("Nenhuma forma de pagamento adicionada");
     }
 
     if (errors.length !== 0) {
       for (const error of errors) {
 
         let span = document.createElement("span");
-        span.classList.add("sale__insert__form__error-box__error");
+        span.classList.add("sale__insert__form-section__error-box__error");
         span.innerHTML = error;
 
         errorsSection.appendChild(span);
@@ -467,7 +499,7 @@ class Sale {
           console.log("selec id", sale);
 
           // pegando os formularios e preenchendo com os dados do cliente que foi clicado em editar
-          let formSale = document.querySelector("#sale__insert__fomr-sale");
+          let formSale = document.querySelector("#sale__insert__form-sale");
           let formClient = document.querySelector("#sale__insert__form-section__client");
           let formProduct = document.querySelector("#sale__insert__form-section__product");
           let formPayment = document.querySelector("#sale__insert__form-section__payment");
