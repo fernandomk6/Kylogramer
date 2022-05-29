@@ -5,37 +5,58 @@ require_once("./conn.php");
 if (isset($_POST) && !empty($_POST)) {
   if ($_POST['type'] == "insert") {
 
-    foreach ($variable as $_POST["products"]) {
-      $_POST["products"][] = explode(",", $variable);
+    $products = [];
+    $payments = [];
+
+    foreach ($_POST["products"] as $variable) {
+      $products[] = explode(",", $variable);
+      // p.id, p.kilogram, p.unitary, p.total
     }
 
-    foreach ($variable as $_POST["payments"]) {
-      $_POST["payments"][] = explode(",", $variable);
+    foreach ($_POST["payments"] as $variable) {
+      $payments[] = explode(",", $variable);
+      // p.id, p.total
     }
 
-    echo json_encode($_POST);
+    // inserits 
+    // sale
+    $sql = "UPDATE `sale` SET
+            `client_id`= :client_id
+            `total`= :sale_total,
+            `deleted`= 0 
+            WHERE 
+            `id` = :id ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $_POST['sale_id']);
+    $stmt->bindParam(':client_id', $_POST['client_id']);
+    $stmt->bindParam(':sale_total', $_POST['sale_total']);
+    $stmt->execute();
+
+    // payments
+    foreach ($payments as $key) {
+      $sql = "INSERT INTO `sale_payment` (`sale_id`, `payment_id`, `total`) VALUES (:sale_id, :payment_id, :payment_total)";
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':sale_id', $_POST['sale_id']);
+      $stmt->bindParam(':payment_id', $key[0]);
+      $stmt->bindParam(':payment_total', $key[1]);
+      $stmt->execute();
+    }
+
+    // prouducts
+    foreach ($products as $key) {
+      $sql = "INSERT INTO `sale_product`(`sale_id`, `product_id`, `kilogram`, `unitary`, `total`) VALUES (:sale_id, :product_id, :kilogram, :unitary, :total)";
+      $stmt = $conn->prepare($sql);
+
+      $stmt->bindParam(':sale_id', $_POST['sale_id']);
+      $stmt->bindParam(':product_id', $key[0]);
+      $stmt->bindParam(':kilogram', $key[1]);
+      $stmt->bindParam(':unitary', $key[2]);
+      $stmt->bindParam(':total', $key[3]);
+      $stmt->execute();
+    }
+    
     exit();
-
-    if ($_POST['id'] == "0") {
-
-      $sql = "INSERT INTO `client`(`name`, `phone`) VALUES (:name, :phone)";
-      $stmt = $conn->prepare($sql);
-      $stmt->bindParam(':name', $_POST['name']);
-      $stmt->bindParam(':phone', $_POST['phone']);
-      $stmt->execute();
-      exit();
-
-    } else {
-
-      $sql = "UPDATE `client` SET `name` = :name, `phone` = :phone WHERE id = :id";
-      $stmt = $conn->prepare($sql);
-      $stmt->bindParam(':name', $_POST['name']);
-      $stmt->bindParam(':phone', $_POST['phone']);
-      $stmt->bindParam(':id', $_POST['id']);
-      $stmt->execute();
-      exit();
-
-    }
+    
   }
 
   if ($_POST['type'] == "delete") {

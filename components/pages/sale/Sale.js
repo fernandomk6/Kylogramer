@@ -276,16 +276,13 @@ class Sale {
 
         // enviar requisição para inserir a venda
         (async () => {
-          const res = await fetch('./server/sale.php', {
+          await fetch('./server/sale.php', {
             method: "POST",
             header: {
               ContentType: "application/json"
             },
             body: formData
           });
-
-          const data = await res.json();
-          console.log(data);
 
           // atualizar todos os cards
           this.loadCards();

@@ -1,2 +1,2 @@
 # To do
-- concluir requisição insert sale js
+- concluir loadCards insert sale js
