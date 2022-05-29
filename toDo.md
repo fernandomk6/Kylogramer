@@ -1,2 +1,2 @@
 # To do
-- concluir loadCards insert sale js
+- atualizar loadCards sale.js

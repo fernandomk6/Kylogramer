@@ -20,8 +20,9 @@ if (isset($_POST) && !empty($_POST)) {
 
     // inserits 
     // sale
+
     $sql = "UPDATE `sale` SET
-            `client_id`= :client_id
+            `client_id` = :client_id,
             `total`= :sale_total,
             `deleted`= 0 
             WHERE 
@@ -29,7 +30,7 @@ if (isset($_POST) && !empty($_POST)) {
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':id', $_POST['sale_id']);
     $stmt->bindParam(':client_id', $_POST['client_id']);
-    $stmt->bindParam(':sale_total', $_POST['sale_total']);
+    $stmt->bindParam(':sale_total', $_POST['total']);
     $stmt->execute();
 
     // payments
@@ -77,7 +78,8 @@ if (isset($_GET) && !empty($_GET)) {
     $sql = "SELECT sale.id, sale.date, sale.client_id, client.name, client.phone, sale.date, sale.total
             FROM sale, client
             WHERE sale.client_id = client.id 
-            AND sale.deleted = 0";
+            AND sale.deleted = 0
+            ORDER BY sale.id DESC";
 
     $stmt = $conn->prepare($sql);
     $stmt->execute();
