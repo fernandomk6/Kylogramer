@@ -4,7 +4,15 @@ require_once("./conn.php");
 
 if (isset($_POST) && !empty($_POST)) {
   if ($_POST['type'] == "insert") {
-    
+
+    foreach ($variable as $_POST["products"]) {
+      $_POST["products"][] = explode(",", $variable);
+    }
+
+    foreach ($variable as $_POST["payments"]) {
+      $_POST["payments"][] = explode(",", $variable);
+    }
+
     echo json_encode($_POST);
     exit();
 

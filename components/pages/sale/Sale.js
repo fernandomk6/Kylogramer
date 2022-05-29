@@ -261,14 +261,14 @@ class Sale {
           p.kilogram = product.dataset.kilogram;
           p.unitary = product.dataset.unitary;
           p.total = product.dataset.total;
-          formData.append("products[]", p);
+          formData.append("products[]", [p.id, p.kilogram, p.unitary, p.total]);
         }
 
         for (let payment of paymentList.querySelectorAll("li")) {
           let p = {};
           p.id = payment.dataset.id;
           p.total = payment.dataset.total;
-          formData.append("payments[]", p);
+          formData.append("payments[]", [p.id, p.total]);
         }
 
         // limpar dados do form
