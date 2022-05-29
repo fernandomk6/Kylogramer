@@ -1,2 +1,2 @@
 # To do
-- concluir metodo validation sale js
+- concluir requisição insert sale js

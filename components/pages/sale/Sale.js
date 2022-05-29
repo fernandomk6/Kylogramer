@@ -96,6 +96,7 @@ class Sale {
 
   form() {
     let formSale = document.querySelector("#sale__insert__form-sale");
+    let formClient = document.querySelector("#sale__insert__form-section__client");
     let formProduct = document.querySelector("#sale__insert__form-section__product");
     let formPayment = document.querySelector("#sale__insert__form-section__payment");
 
@@ -172,7 +173,7 @@ class Sale {
             total: formProduct.total.value
           };
 
-          let productItem = `<li data-id="${product.id}" data-total="${product.total}" class="sale__insert__form-section__body__item">
+          let productItem = `<li data-id="${product.id}" data-total="${product.total}" data-kilogram="${product.kilogram}" data-unitary="${product.unitary}" class="sale__insert__form-section__body__item">
                               <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">
                                 ${product.name}
                               </div>
@@ -217,7 +218,7 @@ class Sale {
             total: formPayment.total.value
           };
 
-          let paymentItem = `<div data-id="${payment.id}" data-name="payment" class="sale__insert__form-section__body__item">
+          let paymentItem = `<div data-id="${payment.id}" data-name="payment" data-total="${payment.total}" class="sale__insert__form-section__body__item">
                               <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">
                                 ${payment.name}
                               </div>
@@ -244,22 +245,52 @@ class Sale {
 
       if (this.validation()) {
 
+        alert("Passou na validacao");
+
         // criar dados para inserção
-        let formData = new FormData(form);
+        let formData = new FormData();
         formData.append("type", "insert");
+
+        let formDataSale = new FormData();
+        let formDataProducts = new FormData();
+        let formDataPayments = new FormData();
+
+        formDataSale.append("id", formSale.id);
+        formDataSale.append("date", formClient.date,);
+        formDataSale.append("client_id", formClient.id);
+
+        for (let product of productList.querySelectorAll("li")) {
+          let p = {};
+          p.id = product.dataset.id;
+          p.kilogram = product.dataset.kilogram;
+          p.unitary = product.dataset.unitary;
+          p.total = product.dataset.total;
+
+          formDataProducts.append(`product_${p.id}`, JSON.stringify(p));
+        }
+
+        for (let payment of paymentList.querySelectorAll("li")) {
+          let p = {};
+          p.id = payment.dataset.id;
+          p.total = payment.dataset.total;
+          formDataPayments.append(`payment_${p.id}`, JSON.stringify(p));
+        }
 
         // limpar dados do form
         this.clearFormData();
 
         // enviar requisição para inserir a venda
         (async () => {
-          await fetch('./server/sale.php', {
+          const res = await fetch('./server/sale.php', {
             method: "POST",
             header: {
               ContentType: "application/json"
             },
-            body: formData
+            body: formDataProducts
           });
+
+          const data = await res.json();
+          console.log(data);
 
           // atualizar todos os cards
           this.loadCards();
@@ -371,28 +402,24 @@ class Sale {
     errorsSection.innerHTML = "";
     let errors = [];
 
-    if (!formSale.id.value) {
-      errors.push("Id venda não encontrado");
-    }
-
-    if (!formSale.date.value) {
-      errors.push("Total venda em branco");
+    if (formClient.date.value == "") {
+      errors.push("Data em branco");
     }
 
     if (!formClient.id.value) {
       errors.push("Cliente em branco");
     }
 
-    if (productList.innerHTML == "") {
+    if (productList.innerText == "") {
       errors.push("Nenhum produto adicionado");
     }
 
-    if (totalSale.innerHTML == "0,00") {
-      errors.push("Total invalido");
+    if (paymentList.innerText == "") {
+      errors.push("Nenhuma forma de pagamento adicionada");
     }
 
-    if (paymentList.innerHTML == "") {
-      errors.push("Nenhuma forma de pagamento adicionada");
+    if (!parseFloat(totalSale.innerText)) {
+      errors.push("Total invalido");
     }
 
     if (errors.length !== 0) {
@@ -406,6 +433,8 @@ class Sale {
       }
       return;
     }
+
+  
 
     return true;
 

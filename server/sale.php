@@ -4,6 +4,9 @@ require_once("./conn.php");
 
 if (isset($_POST) && !empty($_POST)) {
   if ($_POST['type'] == "insert") {
+    
+    echo json_encode($_POST);
+    exit();
 
     if ($_POST['id'] == "0") {
 
