@@ -218,7 +218,7 @@ class Sale {
             total: formPayment.total.value
           };
 
-          let paymentItem = `<div data-id="${payment.id}" data-name="payment" data-total="${payment.total}" class="sale__insert__form-section__body__item">
+          let paymentItem = `<li data-id="${payment.id}" data-name="payment" data-total="${payment.total}" class="sale__insert__form-section__body__item">
                               <div class="sale__insert__form-section__body__item__data sale__insert__form-section__body__item__data--big">
                                 ${payment.name}
                               </div>
@@ -226,7 +226,7 @@ class Sale {
                                 <span>R$ </span>
                                 <span>${payment.total}</span>
                               </div>
-                            </div>`;
+                            </li>`;
 
           paymentList.innerHTML += paymentItem;
         };
@@ -245,19 +245,15 @@ class Sale {
 
       if (this.validation()) {
 
-        alert("Passou na validacao");
 
         // criar dados para inserção
-        let formData = new FormData();
+
+        let formData = new FormData;
         formData.append("type", "insert");
-
-        let formDataSale = new FormData();
-        let formDataProducts = new FormData();
-        let formDataPayments = new FormData();
-
-        formDataSale.append("id", formSale.id);
-        formDataSale.append("date", formClient.date,);
-        formDataSale.append("client_id", formClient.id);
+        formData.append("sale_id", formSale.id.value);
+        formData.append("client_id", formClient.id.value);
+        formData.append("date", formClient.date.value);
+        formData.append("total", formSale.total.value);
 
         for (let product of productList.querySelectorAll("li")) {
           let p = {};
@@ -265,15 +261,14 @@ class Sale {
           p.kilogram = product.dataset.kilogram;
           p.unitary = product.dataset.unitary;
           p.total = product.dataset.total;
-
-          formDataProducts.append(`product_${p.id}`, JSON.stringify(p));
+          formData.append("products[]", p);
         }
 
         for (let payment of paymentList.querySelectorAll("li")) {
           let p = {};
           p.id = payment.dataset.id;
           p.total = payment.dataset.total;
-          formDataPayments.append(`payment_${p.id}`, JSON.stringify(p));
+          formData.append("payments[]", p);
         }
 
         // limpar dados do form
@@ -286,7 +281,7 @@ class Sale {
             header: {
               ContentType: "application/json"
             },
-            body: formDataProducts
+            body: formData
           });
 
           const data = await res.json();
@@ -368,7 +363,6 @@ class Sale {
     totalSale.innerHTML = "0,00";
 
     formSale.id.value = "";
-    formSale.date.value = "";
     formSale.total.value = "";
 
     formClient.id.value = ""; 
@@ -449,10 +443,8 @@ class Sale {
         }
       });
 
-      // data com todas as vendas
       const data = await res.json();
-      console.log(data);
-
+      
       // limpando todos os cards
       this.sections.content.innerHTML = "";
 
