@@ -1,2 +1,3 @@
 # To do
-- atualizar loadCards sale.js
+- corrigir edição de venda
+- fazer search sale

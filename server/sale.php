@@ -33,6 +33,17 @@ if (isset($_POST) && !empty($_POST)) {
     $stmt->bindParam(':sale_total', $_POST['total']);
     $stmt->execute();
 
+    // limpando pagamentos e produtos
+    $sql = "DELETE FROM sale_product WHERE sale_id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $_POST['sale_id']);
+    $stmt->execute();
+
+    $sql = "DELETE FROM sale_payment WHERE sale_id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $_POST['sale_id']);
+    $stmt->execute();
+
     // payments
     foreach ($payments as $key) {
       $sql = "INSERT INTO `sale_payment` (`sale_id`, `payment_id`, `total`) VALUES (:sale_id, :payment_id, :payment_total)";
@@ -134,7 +145,7 @@ if (isset($_GET) && !empty($_GET)) {
         "client_phone" => $sale['phone'],
         "total" => $sale['total'],
         "products" => [],
-        "payments" => [],
+        "payments" => []
       ];
 
       foreach ($products as $product) {
@@ -144,7 +155,7 @@ if (isset($_GET) && !empty($_GET)) {
       }
 
       foreach ($payments as $payment) {
-        if ($payment['payment_id'] == $sale['id']) {
+        if ($payment['sale_id'] == $sale['id']) {
           array_push($actualSale["payments"], $payment);
         }
       }
@@ -174,7 +185,8 @@ if (isset($_GET) && !empty($_GET)) {
               sale_product.sale_id,
               sale_product.product_id,
               sale_product.kilogram,
-              sale_product.unitary
+              sale_product.unitary,
+              sale_product.total
             FROM 
               sale, sale_product, product
             WHERE 
@@ -234,7 +246,7 @@ if (isset($_GET) && !empty($_GET)) {
       }
 
       foreach ($payments as $payment) {
-        if ($payment['payment_id'] == $sale['id']) {
+        if ($payment['sale_id'] == $sale['id']) {
           array_push($actualSale["payments"], $payment);
         }
       }
@@ -332,5 +344,28 @@ if (isset($_GET) && !empty($_GET)) {
     echo json_encode($data);
     exit();
 
+  }
+
+  if ($_GET['type'] == "update") {
+    // pegando todos os clientes
+    $sql = "SELECT * FROM client";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data["clients"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // pegando todos os produtos
+    $sql = "SELECT * FROM product";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data["products"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // pegando todas as formas de pagamento
+    $sql = "SELECT * FROM payment";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $data["payments"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    echo json_encode($data);
+    exit();
   }
 }
