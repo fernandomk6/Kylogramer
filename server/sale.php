@@ -488,19 +488,19 @@ if (isset($_GET) && !empty($_GET)) {
 
   if ($_GET['type'] == "update") {
     // pegando todos os clientes
-    $sql = "SELECT * FROM client";
+    $sql = "SELECT * FROM client WHERE deleted = 0";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data["clients"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // pegando todos os produtos
-    $sql = "SELECT * FROM product";
+    $sql = "SELECT * FROM product WHERE deleted = 0";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data["products"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // pegando todas as formas de pagamento
-    $sql = "SELECT * FROM payment";
+    $sql = "SELECT * FROM payment WHERE deleted = 0";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $data["payments"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
