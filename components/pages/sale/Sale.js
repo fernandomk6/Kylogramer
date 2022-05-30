@@ -760,7 +760,7 @@ class Sale {
 
       (async () => {
 
-        const res = await fetch(`./server/sale.php?type=search&id=${e.target.id.value}&name=${e.target.name.value}&phone=${e.target.phone.value}`, {
+        const res = await fetch(`./server/sale.php?type=search&id=${e.target.id.value}&name=${e.target.name.value}`, {
           method: "GET",
           headers: {
             contentType: "application/json"
@@ -768,11 +768,14 @@ class Sale {
         });
   
         const data = await res.json();
-        
+        console.log(data)
         this.sections.content.innerHTML = "";
         
-        for (const client of data) {
-          let card = this.buildCard(client.id, client.name, client.phone);
+        // buildando cada card
+        for (const sale of data) {
+          let card = this.buildCard(sale);
+  
+          // inserindo o card dentro do container dos cards
           this.sections.content.innerHTML += card;
         }
   

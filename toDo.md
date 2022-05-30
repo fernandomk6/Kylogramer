@@ -1,3 +1,2 @@
 # To do
-- corrigir edição de venda
-- fazer search sale
+- projeto concluido :D
