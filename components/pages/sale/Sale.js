@@ -119,7 +119,6 @@ class Sale {
     btnOpenForm.onclick = () => {
       // inserir venda com data e retornar id
       // retornar id da venda inserido, todos os clientes, produtos e pagamentos
-
       const updateTotalSale = (value) => {
         totalSale.innerHTML = parseFloat(parseFloat(totalSale.innerHTML) + parseFloat(value)).toFixed(2);
         formSale.total.value = parseFloat(totalSale.innerHTML).toFixed(2);
